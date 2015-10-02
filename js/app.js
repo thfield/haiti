@@ -11,7 +11,6 @@ var map;
 
 d3.json(dataFile, function(error, dataset) {
   setColors(dataset);
-
   map = new Datamap({
     element: document.getElementById(pageId),
     geographyConfig: {
@@ -37,20 +36,20 @@ d3.json(dataFile, function(error, dataset) {
     },
     done: function(){colorIn(valueToDraw)}
   });
-
 });
 
 function setColors(dataset) {
   var vals = {};
-  d3.keys(dataset).forEach(function(d){
+  var colorScale = {};
+  var areas = d3.keys(dataset);
+
+  areas.forEach(function(d){
     d3.keys(dataset[d]).forEach(function(j){
       vals[j]=vals[j] || [];
       vals[j].push(dataset[d][j]);
     });
   });
   var colorPalette = colorbrewer[colorBrew][cLevels];
-  var colorScale = {};
-  var areas = d3.keys(dataset);
   var n = areas.length;
   d3.keys(vals).forEach(function(d){
     colorScale[d]= d3.scale.quantize()
@@ -61,9 +60,22 @@ function setColors(dataset) {
     for (var i=0; i<n; i++) {
       quantaColors[d][areas[i]] = colorScale[d](dataset[areas[i]][d]);
     };
+    createButtons(d);
   });
 };
 
 function colorIn(val){
   map.updateChoropleth(quantaColors[val]);
+  map.options.geographyConfig.popupTemplate = function(geography, data) {
+      return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[val] : '') + '</div>';
+  };
+};
+
+function createButtons(d){
+  var element = d3.select('#'+pageId);
+  element.append('button')
+    .attr('name', d)
+    .attr('onClick', 'colorIn("' + d + '")')
+    .html(d);
+// <button type="button" name="Q1" onClick="colorIn('Q1')">Quarter 1</button>
 };
