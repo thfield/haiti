@@ -5,8 +5,11 @@
   var map = new Datamap({
     element: document.getElementById('themap'),
     geographyConfig: {
+      dataUrl: 'data/communes-topo05.json',
       borderColor: '#000',
-      dataUrl: 'data/communes-topo05.json'
+      popupTemplate: function(geography, data) {
+        return '<div class="hoverinfo">' + geography.properties.name + ': ' +  (data ? data.value : 'n/a') + '</div>';
+      }
     },
     // scope: 'departments',
     scope: 'communes',
