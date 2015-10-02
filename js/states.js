@@ -60,7 +60,7 @@ d3.json(dataFile, function(error, dataset) {
       distColors[states[i]] = distScale(dataset[states[i]]['distance_per_trip']);
       tripColors[states[i]] = tripScale(+dataset[states[i]]['trips_per_user']);
     }
-
+// debugger;
     // Create map
     map = new Datamap({
         element: document.getElementById('vis'),
@@ -78,48 +78,48 @@ d3.json(dataFile, function(error, dataset) {
           popupTemplate: function(geography, data) {return statePopup(geography, data); }
         }
     });
-
+// debugger;
     // Build color gradients
-    buildGradient(pacePalette, 'paceGradient');
-    buildGradient(distPalette, 'distGradient');
-    buildGradient(tripPalette, 'tripGradient');
-
+    // buildGradient(pacePalette, 'paceGradient');
+    // buildGradient(distPalette, 'distGradient');
+    // buildGradient(tripPalette, 'tripGradient');
+// debugger;
     // Draw colorbar
-    visWidth = document.getElementById('vis').offsetWidth;
-
-    cbar = d3.select('#vis > .datamap').append('g')
-      .attr('id', 'colorBar')
-      .attr('class', 'colorbar')
-
-    cbar.append('rect')
-        .attr('id', 'gradientRect')
-        .attr('width', cbarWidth)
-        .attr('height', cbarHeight)
-        .style('fill', 'url(#paceGradient)');
-
-    cbar.append('text')
-      .attr('id', 'colorBarMinText')
-      .attr('class', 'colorbar')
-      .attr('x', 0)
-      .attr('y', cbarHeight + 15)
-      .attr('dx', 0)
-      .attr('dy', 0)
-      .attr('text-anchor', 'start');
-
-    cbar.append('text')
-      .attr('id', 'colorBarMaxText')
-      .attr('class', 'colorbar')
-      .attr('x', cbarWidth)
-      .attr('y', cbarHeight + 15)
-      .attr('dx', 0)
-      .attr('dy', 0)
-      .attr('text-anchor', 'end');
-
-    cbar.attr('transform', 'translate(' + (visWidth-cbarWidth)/2.0 + ', 30)');  // Shift to center
+    // visWidth = document.getElementById('vis').offsetWidth;
+    //
+    // cbar = d3.select('#vis > .datamap').append('g')
+    //   .attr('id', 'colorBar')
+    //   .attr('class', 'colorbar')
+    //
+    // cbar.append('rect')
+    //     .attr('id', 'gradientRect')
+    //     .attr('width', cbarWidth)
+    //     .attr('height', cbarHeight)
+    //     .style('fill', 'url(#paceGradient)');
+    //
+    // cbar.append('text')
+    //   .attr('id', 'colorBarMinText')
+    //   .attr('class', 'colorbar')
+    //   .attr('x', 0)
+    //   .attr('y', cbarHeight + 15)
+    //   .attr('dx', 0)
+    //   .attr('dy', 0)
+    //   .attr('text-anchor', 'start');
+    //
+    // cbar.append('text')
+    //   .attr('id', 'colorBarMaxText')
+    //   .attr('class', 'colorbar')
+    //   .attr('x', cbarWidth)
+    //   .attr('y', cbarHeight + 15)
+    //   .attr('dx', 0)
+    //   .attr('dy', 0)
+    //   .attr('text-anchor', 'end');
+    //
+    // cbar.attr('transform', 'translate(' + (visWidth-cbarWidth)/2.0 + ', 30)');  // Shift to center
 
     // Default palette view
     showPace();
-
+// debugger;
 });
 
 
@@ -130,32 +130,23 @@ d3.json(dataFile, function(error, dataset) {
 // Functions for updating colors
 
 function showPace() {
-  d3.select('#gradientRect').style('fill', 'url(#paceGradient)');
-
-  d3.select('#colorBarMinText').text(pstr(minPace));
-
-  d3.select('#colorBarMaxText').text(pstr(maxPace));
-
+  // d3.select('#gradientRect').style('fill', 'url(#paceGradient)');
+  // d3.select('#colorBarMinText').text(pstr(minPace));
+  // d3.select('#colorBarMaxText').text(pstr(maxPace));
   map.updateChoropleth(paceColors);
 };
 
 function showDist() {
   d3.select('#gradientRect').style('fill', 'url(#distGradient)');
-
   d3.select('#colorBarMinText').text(dstr(minDist));
-
   d3.select('#colorBarMaxText').text(dstr(maxDist));
-
   map.updateChoropleth(distColors);
 };
 
 function showTrips() {
   d3.select('#gradientRect').style('fill', 'url(#tripGradient)');
-
   d3.select('#colorBarMinText').text(tstr(minTrip));
-
   d3.select('#colorBarMaxText').text(tstr(maxTrip));
-
   map.updateChoropleth(tripColors);
 };
 
@@ -163,22 +154,22 @@ function showTrips() {
 // --------------------------------------------------
 // Function to build gradients
 
-function buildGradient(palette, gradientId) {
-  d3.select('#vis > .datamap')
-    .append('linearGradient')
-    .attr('id', gradientId)
-        .attr("gradientUnits", "userSpaceOnUse")
-        .attr("x1", 0)
-        .attr("y1", 0)
-        .attr("x2", cbarWidth)
-        .attr("y2", 0)
-      .selectAll('stop')
-      .data(palette)
-      .enter()
-        .append('stop')
-        .attr('offset', function(d, i) {return i/(cLevels-1)*100.0 + '%'; })
-        .attr('stop-color', function(d) {return d; });
-};
+// function buildGradient(palette, gradientId) {
+//   d3.select('#vis > .datamap')
+//     .append('linearGradient')
+//     .attr('id', gradientId)
+//         .attr("gradientUnits", "userSpaceOnUse")
+//         .attr("x1", 0)
+//         .attr("y1", 0)
+//         .attr("x2", cbarWidth)
+//         .attr("y2", 0)
+//       .selectAll('stop')
+//       .data(palette)
+//       .enter()
+//         .append('stop')
+//         .attr('offset', function(d, i) {return i/(cLevels-1)*100.0 + '%'; })
+//         .attr('stop-color', function(d) {return d; });
+// };
 
 // --------------------------------------------------
 // Template for state popup

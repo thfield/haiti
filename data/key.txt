@@ -1,27 +1,27 @@
-D1C1,932	Baie de Henne	Department du Nord-Ouest
-D1C2,933	Bombardopolis	Department du Nord-Ouest
-D1C3,931	Mole Saint Nicolas	Department du Nord-Ouest
-D1C4,934	Jean Rabel	Department du Nord-Ouest
-D1C5,913	Bassin Bleu	Department du Nord-Ouest
-D1C6,911	Port-de-Paix	Department du Nord-Ouest
-D2C1,642	Thomassique	Department du Centre (Plateau Central)
-D2C2,614	Cerca Carvajal	Department du Centre (Plateau Central)
-D2C3,641	Cerca La Source	Department du Centre (Plateau Central)
-D2C4,613	Thomonde	Department du Centre (Plateau Central)
-D2C5,611	Hinche	Department du Centre (Plateau Central)
-D2C6,623	Boucan Carré	Department du Centre (Plateau Central)
-D3C1,511	Gonaïves	Department de l'Artibonite
-D3C2,523	Anse-Rouge	Department de l'Artibonite
-D3C3,522	Terre-Neuve	Department de l'Artibonite
-D4C1,234	Anse à Pitre	Department du Sud-Est
-D4C2,231	Belle-Anse	Department du Sud-Est
-D4C3,232	Grand Gosier	Department du Sud-Est
-D4C4,214	La Vallee	Department du Sud-Est
-D4C5,222	Cote de Fer	Department du Sud-Est
-D4C6,233	Thiotte	Department du Sud-Est
-D4C7,213	Cayes Jacmel	Department du Sud-Est
-D5C1,151	Anse-à-Galets	Department de l'Ouest (La Gonave)
-D5C2,152	Pointe-à-Raquette	Department de l'Ouest (La Gonave)
+151   D5C1	Anse-à-Galets	Department de l'Ouest (La Gonave)
+152   D5C2	Pointe-à-Raquette	Department de l'Ouest (La Gonave)
+213   D4C7	Cayes Jacmel	Department du Sud-Est
+214   D4C4	La Vallee	Department du Sud-Est
+222   D4C5	Cote de Fer	Department du Sud-Est
+231   D4C2	Belle-Anse	Department du Sud-Est
+232   D4C3	Grand Gosier	Department du Sud-Est
+233   D4C6	Thiotte	Department du Sud-Est
+234   D4C1	Anse à Pitre	Department du Sud-Est
+511   D3C1	Gonaïves	Department de l'Artibonite
+522   D3C3	Terre-Neuve	Department de l'Artibonite
+523   D3C2	Anse-Rouge	Department de l'Artibonite
+611   D2C5	Hinche	Department du Centre (Plateau Central)
+613   D2C4	Thomonde	Department du Centre (Plateau Central)
+614   D2C2	Cerca Carvajal	Department du Centre (Plateau Central)
+623   D2C6	Boucan Carré	Department du Centre (Plateau Central)
+641   D2C3	Cerca La Source	Department du Centre (Plateau Central)
+642   D2C1	Thomassique	Department du Centre (Plateau Central)
+911   D1C6	Port-de-Paix	Department du Nord-Ouest
+913   D1C5	Bassin Bleu	Department du Nord-Ouest
+931   D1C3	Mole Saint Nicolas	Department du Nord-Ouest
+932   D1C1	Baie de Henne	Department du Nord-Ouest
+933   D1C2	Bombardopolis	Department du Nord-Ouest
+934   D1C4	Jean Rabel	Department du Nord-Ouest
 
 D1	Department du Nord-Ouest
 D2	Department du Centre (Plateau Central)
@@ -29,17 +29,17 @@ D3	Department de l'Artibonite
 D4	Department du Sud-Est
 D5	Department de l'Ouest (La Gonave)
 
+1 Ouest D5
+2 Sud-Est D4
+3 Nord
+4 Nord-Est
+5 Artibonite D3
+6 Centre D2
+7 Sud
+8 Grande-Anse
+9 Nord-Ouest D1
+10 Nippes
 
-1: Ouest
-2: Sud-Est
-3: Nord
-4: Nord-Est
-5: Artibonite
-6: Centre
-7: Sud
-8: Grande-Anse
-9: Nord-Ouest
-10: Nippes
 
 111: Port-au-Prince
 112: Delmas
