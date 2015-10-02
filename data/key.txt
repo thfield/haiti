@@ -1,0 +1,192 @@
+D1C1,932	Baie de Henne	Department du Nord-Ouest
+D1C2,933	Bombardopolis	Department du Nord-Ouest
+D1C3,931	Mole Saint Nicolas	Department du Nord-Ouest
+D1C4,934	Jean Rabel	Department du Nord-Ouest
+D1C5,913	Bassin Bleu	Department du Nord-Ouest
+D1C6,911	Port-de-Paix	Department du Nord-Ouest
+D2C1,642	Thomassique	Department du Centre (Plateau Central)
+D2C2,614	Cerca Carvajal	Department du Centre (Plateau Central)
+D2C3,641	Cerca La Source	Department du Centre (Plateau Central)
+D2C4,613	Thomonde	Department du Centre (Plateau Central)
+D2C5,611	Hinche	Department du Centre (Plateau Central)
+D2C6,623	Boucan Carré	Department du Centre (Plateau Central)
+D3C1,511	Gonaïves	Department de l'Artibonite
+D3C2,523	Anse-Rouge	Department de l'Artibonite
+D3C3,522	Terre-Neuve	Department de l'Artibonite
+D4C1,234	Anse à Pitre	Department du Sud-Est
+D4C2,231	Belle-Anse	Department du Sud-Est
+D4C3,232	Grand Gosier	Department du Sud-Est
+D4C4,214	La Vallee	Department du Sud-Est
+D4C5,222	Cote de Fer	Department du Sud-Est
+D4C6,233	Thiotte	Department du Sud-Est
+D4C7,213	Cayes Jacmel	Department du Sud-Est
+D5C1,151	Anse-à-Galets	Department de l'Ouest (La Gonave)
+D5C2,152	Pointe-à-Raquette	Department de l'Ouest (La Gonave)
+
+D1	Department du Nord-Ouest
+D2	Department du Centre (Plateau Central)
+D3	Department de l'Artibonite
+D4	Department du Sud-Est
+D5	Department de l'Ouest (La Gonave)
+
+
+1: Ouest
+2: Sud-Est
+3: Nord
+4: Nord-Est
+5: Artibonite
+6: Centre
+7: Sud
+8: Grande-Anse
+9: Nord-Ouest
+10: Nippes
+
+111: Port-au-Prince
+112: Delmas
+113: Carrefour
+114: Petion-Ville
+115: Kenscoff
+116: Gressier
+117: Cite Soleil
+118: Tabarre
+121: Leogane
+122: Petit Goave
+123: Grand-Goave
+131: Croix-Des-Bouquets
+132: Thomazeau
+133: Ganthier
+134: Cornillon/Grd Bois
+135: Fonds Verrettes
+141: Arcahaie
+142: Cabaret
+151: Anse A Galet
+152: Pointe A Raquette
+
+211: Jacmel
+212: Marigot
+213: Cayes-Jacmel
+214: La Vallee
+221: Bainet
+222: Cotes de Fer
+231: Belle Anse
+232: Grand Gosier
+233: Thiotte
+234: Anse A Pitre
+
+311: Cap Haitien
+312: Quartier Morin
+313: Limonade
+321: Acul du Nord
+322: Plaine du Nord
+323: Milot
+331: Grande Riviere Du Nord
+332: Bahon
+341: St. Raphael
+342: Dondon
+343: Ranquitte
+344: Pignon
+345: La Victoire
+351: Borgne
+352: Port Margot
+361: Limbe
+362: Bas Limbe
+371: Plaisance
+372: Pilate
+
+411: Fort Liberte
+412: Ferrier
+413: Perches
+421: Ouanaminthe
+422: Capotille
+423: Mont Organise
+431: Trou du Nord
+432: Sainte Suzanne
+433: Terrier Rouge
+434: Caracol
+441: Valliere
+442: Carice
+443: Mombin Crochu
+
+511: Gonaives
+512: Ennery
+513: L'Estere
+521: Gros Morne
+522: Terre Neuve
+523: Anse Rouge
+531: Saint-Marc
+532: Verrettes
+533: La Chapelle
+541: Dessalines/Marchandes
+542: Petite Riviere de l'Art
+543: Grande Saline
+544: Desdunes
+551: Saint-Michel de l'Attal
+552: Marmelade
+
+611: Hinche
+612: Maissade
+613: Thomonde
+614: Cerca Carvajal
+621: Mirebalais
+622: Saut d'Eau
+623: Boucan Carre
+631: Lascahobas
+632: Belladere
+633: Savanette
+641: Cerca La Source
+642: Thomassique
+
+711: Les Cayes
+712: Torbeck
+713: Chantal
+714: Camp Perrin
+715: Maniche
+716: Ile A Vache
+721: Port-Salut
+722: St. Jean du Sud
+723: Arniquet
+731: Aquin
+732: St. Louis du Sud
+733: Cavaillon
+741: Coteaux
+742: Port-a-Piment
+743: Roche-A-Bateau
+751: Chardonnieres
+752: Les Anglais
+753: Tiburon
+
+811: Jeremie
+812: Abricots
+813: Bonbon
+814: Moron
+815: Chambellan
+821: Anse d'Hainault
+822: Dame-Marie
+823: Les Irois
+831: Corail
+832: Roseaux
+833: Beaumont
+834: Pestel
+
+911: Port De Paix
+912: La Tortue
+913: Bassin Bleu
+914: Chamsolme
+921: Saint Louis du Nord
+922: Anse A Foleur
+931: Mole Saint Nicolas
+932: Baie de Henne
+933: Bombardopolis
+934: Jean Rabel
+
+1011: Miragoane
+1012: Petite Riviere de Nippes
+1013: Fonds Des Negres
+1014: Paillant
+1021: Anse A Veau
+1022: Petit Trou De Nippes
+1023: L'Asile
+1024: Arnaud
+1025: Plaisance du Sud
+1031: Baraderes
+1032: Grand Boucan

@@ -1,0 +1,23 @@
+http://haitidata.org/developer/
+
+departments:
+  http://haitidata.org/layers/cnigs.spatialdata:hti_boundaries_departements_adm1_cnigs_polygon
+
+communes:
+  http://haitidata.org/layers/cnigs.spatialdata:hti_boundaries_communes_adm2_cnigs_polygon
+
+
+TopoJSON: https://github.com/mbostock/topojson/wiki/Command-Line-Reference
+
+
+convert geojson to topojson:
+  departments:
+    topojson -o departments-topo.json --id-property id_dep --properties name=departemen departments.json
+  departments with simplification:
+    topojson -o departments-topo05.json --id-property id_dep --properties name=departemen --simplify-proportion .05 departments.json
+  communes with simplification:
+    topojson -o communes-topo05.json --id-property id_com --properties name=commune,id_dep,departemen --simplify-proportion .05 communes.json
+  departments and communes in one file with simplification:
+    topojson -o full-topo05.json --properties id_com,commune,id_dep,departemen --simplify-proportion .05 communes.json departments.json
+
+topojson -o full-topo05.json -p communes-topo05.json departments-topo05.json
