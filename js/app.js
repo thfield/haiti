@@ -1,6 +1,4 @@
-var dataFile = 'data/sampledata2.json';
-var topodata = 'data/communes-topo05.json';
-var mapScope = 'communes';
+var dataFile = 'data/2804.json';
 var pageId = 'themap';
 var cLevels = 7;  // Number of color levels
 var colorBrew = 'YlOrRd';
@@ -10,22 +8,22 @@ var quantaColors = {};
 var map;
 
 d3.json(dataFile, function(error, dataset) {
-  setColors(dataset);
+  setColors(dataset.data);
   map = new Datamap({
     element: document.getElementById(pageId),
     geographyConfig: {
-      dataUrl: topodata,
+      dataUrl: 'data/' +  dataset.scope + '-topo05.json',
       borderColor: '#555555',
       popupTemplate: function(geography, data) {
         return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
       }
     },
     // scope: 'departments',
-    scope: mapScope,
+    scope: dataset.scope,
     fills: {
       defaultFill: "#fefefe"
     },
-    data: dataset,
+    data: dataset.data,
     setProjection: function(element) {
       var projection = d3.geo.mercator()
         .center([-73.0513321, 19.0557096])
@@ -34,8 +32,9 @@ d3.json(dataFile, function(error, dataset) {
        var path = d3.geo.path().projection(projection);
        return {path: path, projection: projection};
     },
-    done: function(){colorIn(valueToDraw)}
+    done: function(){colorIn(valueToDraw);}
   });
+  d3.select('#'+pageId).append('h3').text(dataset.title);
 });
 
 function setColors(dataset) {
