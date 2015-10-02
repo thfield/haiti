@@ -4,7 +4,7 @@ var mapScope = 'communes';
 var pageId = 'themap';
 var cLevels = 7;  // Number of color levels
 var colorBrew = 'YlOrRd';
-var valueToDraw = 'Q2';
+var valueToDraw = 'Q1';
 
 var quantaColors = {};
 var map;
@@ -41,23 +41,17 @@ d3.json(dataFile, function(error, dataset) {
 });
 
 function setColors(dataset) {
-  // var vals = [];
-  // d3.values(dataset).forEach(function(d){ vals.push(d[valueToDraw])});
-
   var vals = {};
   d3.keys(dataset).forEach(function(d){
     d3.keys(dataset[d]).forEach(function(j){
       vals[j]=vals[j] || [];
-      vals[j].push(dataset[d][j]) ;
+      vals[j].push(dataset[d][j]);
     });
   });
-
   var colorPalette = colorbrewer[colorBrew][cLevels];
   var colorScale = {};
-
   var areas = d3.keys(dataset);
   var n = areas.length;
-
   d3.keys(vals).forEach(function(d){
     colorScale[d]= d3.scale.quantize()
       .domain(d3.extent(vals[d]))
@@ -68,7 +62,6 @@ function setColors(dataset) {
       quantaColors[d][areas[i]] = colorScale[d](dataset[areas[i]][d]);
     };
   });
-
 };
 
 function colorIn(val){
