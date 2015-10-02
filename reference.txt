@@ -1,3 +1,9 @@
+http://bost.ocks.org/mike/map/
+http://bl.ocks.org/mbostock/4060606
+https://github.com/mbostock/d3/wiki/API-Reference
+http://datamaps.github.io/
+http://data.runkeeper.com/rk-usa-running-stats-by-state
+
 http://haitidata.org/developer/
 
 departments:
@@ -14,10 +20,10 @@ convert geojson to topojson:
   departments:
     topojson -o departments-topo.json --id-property id_dep --properties name=departemen departments.json
   departments with simplification:
-    topojson -o departments-topo05.json --id-property id_dep --properties name=departemen --simplify-proportion .05 departments.json
+    topojson -o departments-topo05.json --id-property id_dep --properties name=departemen,code --simplify-proportion .05 departments.json
   communes with simplification:
-    topojson -o communes-topo05.json --id-property id_com --properties name=commune,id_dep,departemen --simplify-proportion .05 communes.json
+    topojson -o communes-topo05.json --id-property id_com --properties name=commune,id_dep,departemen,code --simplify-proportion .05 communes.json
   departments and communes in one file with simplification:
-    topojson -o full-topo05.json --properties id_com,commune,id_dep,departemen --simplify-proportion .05 communes.json departments.json
-
-topojson -o full-topo05.json -p communes-topo05.json departments-topo05.json
+    topojson -o full-topo05.json --properties id_com,commune,id_dep,departemen,code --simplify-proportion .05 communes.json departments.json
+  combine:  
+    topojson -o full-topo05.json -p communes-topo05.json departments-topo05.json
