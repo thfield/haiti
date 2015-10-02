@@ -1,27 +1,27 @@
-151   D5C1	Anse-à-Galets	Department de l'Ouest (La Gonave)
-152   D5C2	Pointe-à-Raquette	Department de l'Ouest (La Gonave)
-213   D4C7	Cayes Jacmel	Department du Sud-Est
-214   D4C4	La Vallee	Department du Sud-Est
-222   D4C5	Cote de Fer	Department du Sud-Est
-231   D4C2	Belle-Anse	Department du Sud-Est
-232   D4C3	Grand Gosier	Department du Sud-Est
-233   D4C6	Thiotte	Department du Sud-Est
-234   D4C1	Anse à Pitre	Department du Sud-Est
-511   D3C1	Gonaïves	Department de l'Artibonite
-522   D3C3	Terre-Neuve	Department de l'Artibonite
-523   D3C2	Anse-Rouge	Department de l'Artibonite
-611   D2C5	Hinche	Department du Centre (Plateau Central)
-613   D2C4	Thomonde	Department du Centre (Plateau Central)
-614   D2C2	Cerca Carvajal	Department du Centre (Plateau Central)
-623   D2C6	Boucan Carré	Department du Centre (Plateau Central)
-641   D2C3	Cerca La Source	Department du Centre (Plateau Central)
-642   D2C1	Thomassique	Department du Centre (Plateau Central)
-911   D1C6	Port-de-Paix	Department du Nord-Ouest
-913   D1C5	Bassin Bleu	Department du Nord-Ouest
-931   D1C3	Mole Saint Nicolas	Department du Nord-Ouest
-932   D1C1	Baie de Henne	Department du Nord-Ouest
-933   D1C2	Bombardopolis	Department du Nord-Ouest
-934   D1C4	Jean Rabel	Department du Nord-Ouest
+D1C1  C932 Baie de Henne
+D1C2  C933 Bombardopolis
+D1C3  C931 Mole Saint Nicolas
+D1C4  C934 Jean Rabel
+D1C5  C913 Bassin Bleu
+D1C6  C911 Port-de-Paix
+D2C1  C642 Thomassique
+D2C2  C614 Cerca Carvajal
+D2C3  C641 Cerca La Source
+D2C4  C613 Thomonde
+D2C5  C611 Hinche
+D2C6  C623 Boucan Carré
+D3C1  C511 Gonaïves
+D3C2  C523 Anse-Rouge
+D3C3  C522 Terre-Neuve
+D4C1  C234 Anse à Pitre
+D4C2  C231 Belle-Anse
+D4C3  C232 Grand Gosier
+D4C4  C214 La Vallee
+D4C5  C222 Cote de Fer
+D4C6  C233 Thiotte
+D5C1  C151 Anse-à-Galets
+D5C2  C152 Pointe-à-Raquette
+D4C7  C213 Cayes Jacmel
 
 D1	Department du Nord-Ouest
 D2	Department du Centre (Plateau Central)

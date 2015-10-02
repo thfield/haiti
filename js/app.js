@@ -1,47 +1,29 @@
 var dataFile = 'data/sampledata2.json';
+var topodata = 'data/communes-topo05.json';
+var mapScope = 'communes';
+var pageId = 'themap';
+var cLevels = 7;  // Number of color levels
+var colorBrew = 'YlOrRd';
+var valueToDraw = 'Q2';
+
 var quantaColors = {};
 var map;
 
 d3.json(dataFile, function(error, dataset) {
-  var values = [];
-  d3.values(dataset).forEach(function(d){ values.push(d.value)})
-
-  var cLevels = 7;  // Number of color levels
-  var colorPalette = colorbrewer['Oranges'][cLevels];
-  var colorScale = d3.scale.quantize()
-    .domain(d3.extent(values))
-    .range(colorPalette);
-// debugger;
-  // Data properties
-  areas = d3.keys(dataset);
-  n = areas.length;
-
-  // Set up choropleth colorings
-  for (var i=0; i<n; i++) {
-    quantaColors[areas[i]] = colorScale(dataset[areas[i]]['value']);
-  };
+  setColors(dataset);
 
   map = new Datamap({
-    element: document.getElementById('themap'),
+    element: document.getElementById(pageId),
     geographyConfig: {
-      dataUrl: 'data/communes-topo05.json',
+      dataUrl: topodata,
       borderColor: '#555555',
       popupTemplate: function(geography, data) {
-        return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data.value : '') + '</div>';
+        return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
       }
     },
     // scope: 'departments',
-    scope: 'communes',
+    scope: mapScope,
     fills: {
-      // 'level0': 'rgb(247,251,255)',
-      // 'level1': 'rgb(222,235,247)',
-      // 'level2': 'rgb(198,219,239)',
-      // 'level3': 'rgb(158,202,225)',
-      // 'level4': 'rgb(107,174,214)',
-      // 'level5': 'rgb(66,146,198)',
-      // 'level6': 'rgb(33,113,181)',
-      // 'level7': 'rgb(8,81,156)',
-      // 'level8': 'rgb(8,48,107)',
       defaultFill: "#fefefe"
     },
     data: dataset,
@@ -53,11 +35,42 @@ d3.json(dataFile, function(error, dataset) {
        var path = d3.geo.path().projection(projection);
        return {path: path, projection: projection};
     },
-    done: colorIn
+    done: function(){colorIn(valueToDraw)}
   });
 
 });
 
-function colorIn(){
-  map.updateChoropleth(quantaColors);
+function setColors(dataset) {
+  // var vals = [];
+  // d3.values(dataset).forEach(function(d){ vals.push(d[valueToDraw])});
+
+  var vals = {};
+  d3.keys(dataset).forEach(function(d){
+    d3.keys(dataset[d]).forEach(function(j){
+      vals[j]=vals[j] || [];
+      vals[j].push(dataset[d][j]) ;
+    });
+  });
+
+  var colorPalette = colorbrewer[colorBrew][cLevels];
+  var colorScale = {};
+
+  var areas = d3.keys(dataset);
+  var n = areas.length;
+
+  d3.keys(vals).forEach(function(d){
+    colorScale[d]= d3.scale.quantize()
+      .domain(d3.extent(vals[d]))
+      .range(colorPalette);
+    quantaColors[d] = {};
+    // Set up choropleth colorings
+    for (var i=0; i<n; i++) {
+      quantaColors[d][areas[i]] = colorScale[d](dataset[areas[i]][d]);
+    };
+  });
+
+};
+
+function colorIn(val){
+  map.updateChoropleth(quantaColors[val]);
 };
