@@ -1,4 +1,5 @@
-var dataFile = 'data/2804.json';
+
+var dataFile = dataFile || 'data/2801.json';
 var pageId = 'themap';
 var cLevels = 7;  // Number of color levels
 var colorBrew = 'YlOrRd';
@@ -12,39 +13,40 @@ var cellWidth = 30, // Width of color legend cell
     cbarWidth = cellWidth*cLevels;
     cbarHeight = 10;  // Height of color legend
 
-d3.json(dataFile, function(error, dataset) {
-  map = new Datamap({
-    element: document.getElementById(pageId),
-    geographyConfig: {
-      dataUrl: 'data/' +  dataset.scope + '-topo05.json',
-      borderColor: '#555555',
-      popupTemplate: function(geography, data) {
-        return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
+function haitimap(dataFile){
+  d3.json(dataFile, function(error, dataset) {
+    map = new Datamap({
+      element: document.getElementById(pageId),
+      geographyConfig: {
+        dataUrl: 'data/' +  dataset.scope + '-topo05.json',
+        borderColor: '#555555',
+        popupTemplate: function(geography, data) {
+          return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
+        }
+      },
+      scope: dataset.scope,
+      fills: {
+        defaultFill: "#fefefe"
+      },
+      data: dataset.data,
+      setProjection: function(element) {
+        var projection = d3.geo.mercator()
+          .center([-73.0513321, 19.0557096])
+          .scale(element.offsetWidth*18)
+          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+         var path = d3.geo.path().projection(projection);
+         return {path: path, projection: projection};
+      },
+      done: function(){
+        setColors(dataset.data);
+        colorIn(valueToDraw);
+        buildGradient(colorPalette, 'gradient');
       }
-    },
-    scope: dataset.scope,
-    fills: {
-      defaultFill: "#fefefe"
-    },
-    data: dataset.data,
-    setProjection: function(element) {
-      var projection = d3.geo.mercator()
-        .center([-73.0513321, 19.0557096])
-        .scale(element.offsetWidth*18)
-        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-       var path = d3.geo.path().projection(projection);
-       return {path: path, projection: projection};
-    },
-    done: function(){
-      setColors(dataset.data);
-      colorIn(valueToDraw);
-      buildGradient(colorPalette, 'gradient');
-    }
+    });
+    //set title
+    d3.select('#'+pageId).append('h3').text(dataset.title);
   });
-  //set title
-  d3.select('#'+pageId).append('h3').text(dataset.title);
-});
-
+};
 
 function setColors(dataset) {
   var vals = {};
@@ -146,3 +148,12 @@ function createButtons(d){
     .attr('onClick', 'colorIn("' + d + '")')
     .html(d);
 };
+
+haitimap('data/2801.json');
+
+function clearMap(){
+  var myNode = document.getElementById("themap");
+  while (myNode.firstChild) {
+      myNode.removeChild(myNode.firstChild);
+  }
+}
