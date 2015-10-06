@@ -24,7 +24,8 @@ d3.json(dataFile, function(error, dataset) {
     fills: {
       defaultFill: "#fefefe"
     },
-    data: dataset,
+    data: dataset.data,
+    title: dataset.title,
     setProjection: function(element) {
       var projection = d3.geo.mercator()
         .center([-73.0513321, 19.0557096])
@@ -108,10 +109,11 @@ function colorIn(val){
 
 function loadAndRedraw(pathToFile){
   d3.json(pathToFile, function(error,dataset){
-    map.options.data = dataset;
-    setColors(map.options.data.data);
+    map.options.data = dataset.data;
+    map.options.title = dataset.title;
+    setColors(map.options.data);
     colorIn(valueToDraw);
-    d3.select('.maptitle').text(dataset.title);
+    d3.select('.maptitle').text(map.options.title);
   });
 };
 
@@ -119,7 +121,7 @@ function makeTitle(){
   d3.select('#'+mapId+' > .datamap')
     .append('text')
       .attr('class', 'maptitle')
-      .text(map.options.data.title)
+      .text(map.options.title)
       .attr('dy', function(){return map.options.element.offsetHeight - 5 })
       ;
 };
