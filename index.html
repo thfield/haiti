@@ -13,16 +13,19 @@
 
 <body>
 
-  <select name="select" onchange="loadAndRedraw('data/'+this.value+'.json')">
-    <option value="2801">2801</option>
-    <option value="2802">2802</option>
-    <option value="2803">2803</option>
-    <option value="2804">2804</option>
-  </select>
 
-	<div class="map" id="themap" style="height: 400px; width: 500px;">
-	  <div class="buttons"></div>
-	</div>
+
+
+	<div class="map" id="themap" style="height: 400px; width: 500px;"></div>
+  <div class="controls" id="themap-controls">
+    <div class="buttons"></div>
+    <select name="select" onchange="loadAndRedraw('data/'+this.value+'.json')">
+      <option value="2801">2801</option>
+      <option value="2802">2802</option>
+      <option value="2803">2803</option>
+      <option value="2804">2804</option>
+    </select>
+  </div>
   <script src="js/app.js" charset="utf-8"></script>
 
 </body>
