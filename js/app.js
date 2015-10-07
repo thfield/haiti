@@ -1,16 +1,14 @@
+var initDataFile = 'data/2801.json',
+    mapId = 'themap',
+    tint = 'YlOrRd',
+    cLevels = 7;
 
-var dataFile = dataFile || 'data/2801.json';
-var mapId = 'themap';
-var cLevels = 7;  // Number of color levels
-var colorBrew = 'YlOrRd';
-var colorPalette = colorbrewer[colorBrew][cLevels];
 
 var valueToDraw = '';
-var quantaColors = {};
+var colorMap = {};
 var map;
 
-
-d3.json(dataFile, function(error, dataset) {
+d3.json(initDataFile, function(error, dataset) {
   map = new Datamap({
     element: document.getElementById(mapId),
     geographyConfig: {
@@ -26,6 +24,7 @@ d3.json(dataFile, function(error, dataset) {
     },
     data: dataset.data,
     title: dataset.title,
+    colorPalette : colorbrewer[tint][cLevels],
     setProjection: function(element) {
       var projection = d3.geo.mercator()
         .center([-73.0513321, 19.0557096])
@@ -36,82 +35,97 @@ d3.json(dataFile, function(error, dataset) {
     },
     done: function(){
       setColors(dataset.data);
+      createButtons(colorMap);
       colorIn(valueToDraw);
       makeTitle();
-      map.choroplethKey(colorPalette,{hSize: 20, vSize: 10});
+      map.choroKey(map.options.colorPalette,{hSize: 20, vSize: 10});
     }
   });
 
-  map.addPlugin('choroplethKey', function (layer,data,options) {
+  map.addPlugin('choroKey', function (layer,data,options) {
     // hold this in a closure
     var self = this;
     // a class you'll add to the DOM elements
     var className = 'choroKey';
     // make a D3 selection.
     var choroKey = layer
-           .selectAll(className)
-           .data( data, JSON.stringify );
+        .selectAll(className)
+        .data( data, JSON.stringify );
+
     choroKey
       .enter()
         .append('rect')
         .attr('class', className) //remember to set the class name
         .attr('width', options.hSize)
         .attr('height', options.vSize)
-        .attr('x', function ( d, i ) { return options.hSize*i; })
+        .attr('x', function ( d, i ) { return options.hSize*(i+1); })
         .style('fill', function ( d ) { return d; })
         ;
+    layer.append('text')
+        .text(map.options.choroExtent[0])
+        .attr('class','choroMin')
+        .attr('x', '0')
+        .attr('y', options.vSize);
+    layer.append('text')
+        .text(map.options.choroExtent[1])
+        .attr('class','choroMax')
+        .attr('x', options.hSize * (cLevels+1))
+        .attr('y', options.vSize);
   });
 
 });
 
 
-function setColors(dataset) {
+function setColors(data) {
   var vals = {};
   var allVals = []; //makes sure the different data sets use the same color scale, for instance to compare performance across time
   var colorScale = {};
-  var areas = d3.keys(dataset);
+  var areas = d3.keys(data);
   var n = areas.length;
-  clearElement(mapId, 'buttons');
 
   areas.forEach(function(d){
-    d3.keys(dataset[d]).forEach(function(j){
+    d3.keys(data[d]).forEach(function(j){
       vals[j]=vals[j] || [];
-      // vals[j].push(dataset[d][j]);
-      allVals.push(dataset[d][j]);
+      vals[j].push(data[d][j]);
+      allVals.push(data[d][j]);
       valueToDraw = j;
     });
   });
 
+map.options.choroExtent = d3.extent(allVals);
+
   d3.keys(vals).forEach(function(d){
     colorScale[d]= d3.scale.quantize()
-      .domain( d3.extent(allVals) ) // use for same scale across datasets
+      .domain( map.options.choroExtent ) // use for same scale across datasets
       // .domain( d3.extent(vals[d]) ) // use for dataset to have individual color scale
-      .range(colorPalette);
-    quantaColors[d] = {};
+      .range(map.options.colorPalette);
+    colorMap[d] = {};
     // Set up choropleth colorings
     for (var i=0; i<n; i++) {
-      quantaColors[d][areas[i]] = colorScale[d](dataset[areas[i]][d]);
+      colorMap[d][areas[i]] = colorScale[d](data[areas[i]][d]);
     };
-    createButton(d);
-  });
 
+  });
 };
 
+
 function colorIn(val){
-  map.updateChoropleth(quantaColors[val]);
+  map.updateChoropleth(colorMap[val]);
   map.options.geographyConfig.popupTemplate = function(geography, data) {
       return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[val] : '') + '</div>';
   };
-
-  return false;
 };
 
 
 function loadAndRedraw(pathToFile){
+clearElement(mapId, 'buttons');
+
   d3.json(pathToFile, function(error,dataset){
     map.options.data = dataset.data;
     map.options.title = dataset.title;
+
     setColors(map.options.data);
+    createButtons(colorMap);
     colorIn(valueToDraw);
     d3.select('.maptitle').text(map.options.title);
   });
@@ -126,13 +140,15 @@ function makeTitle(){
       ;
 };
 
-function createButton(d){
+
+function createButtons(obj){
   var element = d3.select('#'+ mapId + '> .buttons');
-  element.append('button')
-    .attr('name', d)
-    .attr('onClick', 'colorIn("' + d + '")')
-    .html(d);
-  return false;
+  d3.keys(obj).forEach(function(d){
+    element.append('button')
+      .attr('name', d)
+      .attr('onClick', 'colorIn("' + d + '")')
+      .html(d);
+   });
 };
 
 function clearElement(elementId,className) {
