@@ -19,13 +19,25 @@
 	<div class="map" id="themap" style="height: 400px; width: 500px;"></div>
   <div class="controls" id="themap-controls">
     <div class="buttons"></div>
-    <select name="select" onchange="loadAndRedraw('data/'+this.value+'.json')">
+    <select name="select" onchange="loadAndRedraw.call(myMap,'data/'+this.value+'.json')">
       <option value="2801">2801</option>
       <option value="2802">2802</option>
       <option value="2803">2803</option>
       <option value="2804">2804</option>
     </select>
   </div>
+
+  <div class="map" id="secondmap" style="height: 400px; width: 500px;"></div>
+  <div class="controls" id="secondmap-controls">
+    <div class="buttons"></div>
+    <select name="select" onchange="loadAndRedraw.call(myMap2,'data/'+this.value+'.json')">
+      <option value="2801">2801</option>
+      <option value="2802" selected>2802</option>
+      <option value="2803">2803</option>
+      <option value="2804">2804</option>
+    </select>
+  </div>
+
   <script src="js/app.js" charset="utf-8"></script>
 
 </body>
