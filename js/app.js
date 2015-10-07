@@ -1,82 +1,88 @@
-var initDataFile = 'data/2801.json',
-    mapId = 'themap',
-    mapId2 = 'secondmap',
-    tint = 'YlOrRd',
+//TODO figure out why tooltips aren't following
+//TODO change reDraw() to draw or redraw title and choro key values
+//TODO make setColors() more efficient
+//TODO turn some intial values into defaults for new Datamap()
+
+var tint = 'YlOrRd',
     cLevels = 7;
 
-var valueToDraw = 'Q1';
+var valueToDraw = '';
 var myMap,
     myMap2;
 
-d3.json(initDataFile, function(error, dataset) {
-  myMap = new Datamap({
-    element: document.getElementById(mapId),
-    geographyConfig: {
-      dataUrl: 'data/' +  dataset.scope + '-topo05.json',
-      borderColor: '#555555',
-      popupTemplate: function(geography, data) {
-        return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
+(function(initialize){
+  d3.json(initialize.dataFile, function(error, dataset) {
+    myMap = new Datamap({
+      element: document.getElementById(initialize.mapId),
+      geographyConfig: {
+        dataUrl: 'data/' +  dataset.scope + '-topo05.json',
+        borderColor: '#555555',
+        popupTemplate: function(geography, data) {
+          return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
+        }
+      },
+      scope: dataset.scope,
+      data: dataset.data,
+      title: dataset.title,
+      colorPalette: colorbrewer[tint][cLevels],
+      //turn these into defaults
+        colorMap: {},
+        fills: {
+          defaultFill: "#fefefe"
+        },
+        setProjection: function(element) {
+          var projection = d3.geo.mercator()
+            .center([-73.0513321, 19.0557096])
+            .scale(element.offsetWidth*18)
+            .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+           var path = d3.geo.path().projection(projection);
+           return {path: path, projection: projection};
+        },
+      //turn these into defaults
+      done: function(self){
+        reDraw.call(self);
+        makeTitle.call(self);
+        drawKey.call(self,{hSize: 20, vSize: 10});
       }
-    },
-    scope: dataset.scope,
-    fills: {
-      defaultFill: "#fefefe"
-    },
-    data: dataset.data,
-    title: dataset.title,
-    colorPalette: colorbrewer[tint][cLevels],
-    colorMap: {},
-    setProjection: function(element) {
-      var projection = d3.geo.mercator()
-        .center([-73.0513321, 19.0557096])
-        .scale(element.offsetWidth*18)
-        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-       var path = d3.geo.path().projection(projection);
-       return {path: path, projection: projection};
-    },
-    done: function(self){
-      reDraw.call(self);
-      makeTitle.call(self);
-      drawKey.call(self,{hSize: 20, vSize: 10});
-      setup2();
-    }
+    });
   });
-});
-function setup2(){
-d3.json('data/2802.json', function(error, dataset) {
-  myMap2 = new Datamap({
-    element: document.getElementById(mapId2),
-    geographyConfig: {
-      dataUrl: 'data/' +  dataset.scope + '-topo05.json',
-      borderColor: '#555555',
-      popupTemplate: function(geography, data) {
-        return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
+})({dataFile:'data/2801.json', mapId:'themap'});
+
+(function(initialize){
+  d3.json(initialize.dataFile, function(error, dataset) {
+    myMap2 = new Datamap({
+      element: document.getElementById(initialize.mapId),
+      geographyConfig: {
+        dataUrl: 'data/' +  dataset.scope + '-topo05.json',
+        borderColor: '#555555',
+        popupTemplate: function(geography, data) {
+          return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
+        }
+      },
+      scope: dataset.scope,
+      fills: {
+        defaultFill: "#fefefe"
+      },
+      data: dataset.data,
+      title: dataset.title,
+      colorPalette: colorbrewer[tint][cLevels],
+      colorMap: {},
+      setProjection: function(element) {
+         var projection = d3.geo.mercator()
+          .center([-73.0513321, 19.0557096])
+          .scale(element.offsetWidth*18)
+          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+         var path = d3.geo.path().projection(projection);
+         return {path: path, projection: projection};
+      },
+      done: function(self){
+        reDraw.call(self);
+        makeTitle.call(self);
+        drawKey.call(self,{hSize: 20, vSize: 10});
       }
-    },
-    scope: dataset.scope,
-    fills: {
-      defaultFill: "#fefefe"
-    },
-    data: dataset.data,
-    title: dataset.title,
-    colorPalette: colorbrewer[tint][cLevels],
-    colorMap: {},
-    setProjection: function(element) {
-      var projection = d3.geo.mercator()
-        .center([-73.0513321, 19.0557096])
-        .scale(element.offsetWidth*18)
-        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-       var path = d3.geo.path().projection(projection);
-       return {path: path, projection: projection};
-    },
-    done: function(self){
-      reDraw.call(self);
-      makeTitle.call(self);
-      drawKey.call(self,{hSize: 20, vSize: 10});
-    }
+    });
   });
-});
-}
+})({dataFile:'data/2802.json', mapId:'theothermap'});
 
 function makeTitle(){
   var self = this;
@@ -90,12 +96,9 @@ function makeTitle(){
 
 function reDraw (){
   var self = this;
-  // self.setColors(self.options.data);
   setColors.call(self);
   drawButtons.call(self);
   colorIn.call(self,valueToDraw);
-  //TODO draw or redraw title
-  //TODO draw or redraw choro key values
 }
 
 function setColors() {
