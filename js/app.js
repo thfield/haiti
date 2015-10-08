@@ -1,7 +1,7 @@
-//TODO figure out why tooltips aren't following
 //TODO change reDraw() to draw or redraw title and choro key values
 //TODO make setColors() more efficient
 //TODO turn some intial values into defaults for new Datamap()
+//TODO redraw map if new data file has different scope
 
 var tint = 'YlOrRd',
     cLevels = 7;
@@ -15,30 +15,12 @@ var myMap,
     myMap = new Datamap({
       element: document.getElementById(initialize.mapId),
       geographyConfig: {
-        dataUrl: 'data/' +  dataset.scope + '-topo05.json',
-        borderColor: '#555555',
-        popupTemplate: function(geography, data) {
-          return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
-        }
+        dataUrl: 'data/' +  dataset.scope + '-topo05.json'
       },
       scope: dataset.scope,
       data: dataset.data,
       title: dataset.title,
       colorPalette: colorbrewer[tint][cLevels],
-      //turn these into defaults
-        colorMap: {},
-        fills: {
-          defaultFill: "#fefefe"
-        },
-        setProjection: function(element) {
-          var projection = d3.geo.mercator()
-            .center([-73.0513321, 19.0557096])
-            .scale(element.offsetWidth*18)
-            .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-           var path = d3.geo.path().projection(projection);
-           return {path: path, projection: projection};
-        },
-      //turn these into defaults
       done: function(self){
         reDraw.call(self);
         makeTitle.call(self);
@@ -53,28 +35,12 @@ var myMap,
     myMap2 = new Datamap({
       element: document.getElementById(initialize.mapId),
       geographyConfig: {
-        dataUrl: 'data/' +  dataset.scope + '-topo05.json',
-        borderColor: '#555555',
-        popupTemplate: function(geography, data) {
-          return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[valueToDraw] : '') + '</div>';
-        }
+        dataUrl: 'data/' +  dataset.scope + '-topo05.json'
       },
       scope: dataset.scope,
-      fills: {
-        defaultFill: "#fefefe"
-      },
       data: dataset.data,
       title: dataset.title,
       colorPalette: colorbrewer[tint][cLevels],
-      colorMap: {},
-      setProjection: function(element) {
-         var projection = d3.geo.mercator()
-          .center([-73.0513321, 19.0557096])
-          .scale(element.offsetWidth*18)
-          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-         var path = d3.geo.path().projection(projection);
-         return {path: path, projection: projection};
-      },
       done: function(self){
         reDraw.call(self);
         makeTitle.call(self);
@@ -169,7 +135,6 @@ function loadAndRedraw(pathToFile){
 
 function drawKey(options) {
   var self = this;
-
   // a class you'll add to the DOM elements
   var className = 'choroKey';
   var layer = this.addLayer(className);
@@ -197,7 +162,6 @@ function drawKey(options) {
       .attr('class','choroMax')
       .attr('x', options.hSize * (cLevels+1))
       .attr('y', options.vSize);
-
 }
 
 function clearElement(elementId,className) {

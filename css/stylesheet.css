@@ -1,3 +1,8 @@
 .map {
 	border: 1px black solid;
+	position: relative;
+}
+
+.container {
+	display: inline-block;
 }

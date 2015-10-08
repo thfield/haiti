@@ -710,7 +710,8 @@
     var self = this;
     element.on('mousemove', null);
     element.on('mousemove', function() {
-      var position = d3.mouse(self.options.element);
+      // var position = d3.mouse(self.options.element);
+      var position = d3.mouse(document.body); //changed because tooltip is calculating wrong position when two maps are on screen
       d3.select(self.svg[0][0].parentNode).select('.datamaps-hoverover')
         .style('top', ( (position[1] + 30)) + "px")
         .html(function() {
