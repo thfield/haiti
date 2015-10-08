@@ -1,7 +1,7 @@
 //TODO change reDraw() to draw or redraw title and choro key values
 //TODO make setColors() more efficient
-//TODO turn some intial values into defaults for new Datamap()
 //TODO redraw map if new data file has different scope
+//TODO write script to autogenerate select box
 
 var tint = 'YlOrRd',
     cLevels = 7;

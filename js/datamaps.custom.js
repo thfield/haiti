@@ -7,8 +7,7 @@
   var defaultOptions = {
     scope: 'world',
     responsive: false,
-    setProjection: setProjection,
-    projection: 'equirectangular',
+    projection: '',
     dataType: 'json',
     data: {},
     done: function() {},
