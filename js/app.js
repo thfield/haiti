@@ -15,7 +15,7 @@ var myMap,
     myMap = new Datamap({
       element: document.getElementById(initialize.mapId),
       geographyConfig: {
-        dataUrl: 'data/' +  dataset.scope + '-topo05.json'
+        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
       },
       scope: dataset.scope,
       data: dataset.data,
@@ -35,7 +35,7 @@ var myMap,
     myMap2 = new Datamap({
       element: document.getElementById(initialize.mapId),
       geographyConfig: {
-        dataUrl: 'data/' +  dataset.scope + '-topo05.json'
+        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
       },
       scope: dataset.scope,
       data: dataset.data,
