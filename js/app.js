@@ -22,9 +22,7 @@ var myMap,
       title: dataset.title,
       colorPalette: colorbrewer[tint][cLevels],
       done: function(self){
-        reDraw.call(self);
-        makeTitle.call(self);
-        drawKey.call(self,{hSize: 20, vSize: 10});
+      drawOrRedraw.call(self);
       }
     });
   });
@@ -42,23 +40,55 @@ var myMap,
       title: dataset.title,
       colorPalette: colorbrewer[tint][cLevels],
       done: function(self){
-        reDraw.call(self);
-        makeTitle.call(self);
-        drawKey.call(self,{hSize: 20, vSize: 10});
+        drawOrRedraw.call(self);
       }
     });
   });
 })({dataFile:'data/2802.json', mapId:'theothermap'});
 
-function makeTitle(){
-  var self = this;
-  d3.select('#'+self.options.element.id+' > .datamap')
-    .append('text')
-      .attr('class', 'maptitle')
-      .text(self.options.title)
-      .attr('dy', function(){return self.options.element.offsetHeight - 5 })
-      ;
-};
+function drawOrRedraw(){
+  var self=this;
+  setColors.call(self);
+  drawButtons.call(self);
+  colorIn.call(self,valueToDraw);
+
+  //! CHANGE THIS
+  //check if drawing for the first time
+  if (true) {
+    d3.select('#'+self.options.element.id+' > .datamap')
+      .append('text')
+        .attr('class', 'maptitle')
+        .text(self.options.title)
+        .attr('dy', function(){return self.options.element.offsetHeight - 5 })
+        ;
+    var choroKeyOptions = {hSize: 20, vSize: 10};
+    var className = 'choroKey';
+    var layer = this.addLayer(className);
+    // make a D3 selection.
+    var choroKey = layer
+        .selectAll(className)
+        .data( self.options.colorPalette, JSON.stringify );
+    choroKey
+      .enter()
+        .append('rect')
+        .attr('class', className) //remember to set the class name
+        .attr('width', choroKeyOptions.hSize)
+        .attr('height', choroKeyOptions.vSize)
+        .attr('x', function ( d, i ) { return choroKeyOptions.hSize*(i+1); })
+        .style('fill', function ( d ) { return d; })
+        ;
+    layer.append('text')
+        .text(self.options.choroExtent[0])
+        .attr('class','choroMin')
+        .attr('x', '0')
+        .attr('y', choroKeyOptions.vSize);
+    layer.append('text')
+        .text(self.options.choroExtent[1])
+        .attr('class','choroMax')
+        .attr('x', choroKeyOptions.hSize * (cLevels+1))
+        .attr('y', choroKeyOptions.vSize);
+  };
+}
 
 function reDraw (){
   var self = this;
@@ -130,38 +160,15 @@ function loadAndRedraw(pathToFile){
 
     reDraw.call(self);
     d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
+    d3.select('#'+ self.options.element.id +' .choroMin').text(self.options.choroExtent[0])
+    d3.select('#'+ self.options.element.id +' .choroMax').text(self.options.choroExtent[1])
   });
 };
 
 function drawKey(options) {
   var self = this;
   // a class you'll add to the DOM elements
-  var className = 'choroKey';
-  var layer = this.addLayer(className);
-  // make a D3 selection.
-  var choroKey = layer
-      .selectAll(className)
-      .data( self.options.colorPalette, JSON.stringify );
 
-  choroKey
-    .enter()
-      .append('rect')
-      .attr('class', className) //remember to set the class name
-      .attr('width', options.hSize)
-      .attr('height', options.vSize)
-      .attr('x', function ( d, i ) { return options.hSize*(i+1); })
-      .style('fill', function ( d ) { return d; })
-      ;
-  layer.append('text')
-      .text(self.options.choroExtent[0])
-      .attr('class','choroMin')
-      .attr('x', '0')
-      .attr('y', options.vSize);
-  layer.append('text')
-      .text(self.options.choroExtent[1])
-      .attr('class','choroMax')
-      .attr('x', options.hSize * (cLevels+1))
-      .attr('y', options.vSize);
 }
 
 function clearElement(elementId,className) {
