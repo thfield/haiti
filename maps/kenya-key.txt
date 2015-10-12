@@ -1,0 +1,47 @@
+3338139, Bomet
+3338140, Kisii
+3338145, Narok
+3486017, Homa Bay
+3486018, Migori
+3486019, Nakuru
+3486020, Kajiado
+3486288, Kericho
+3486289, Kisumu
+3486290, Nyamira
+3486291, Siaya
+3486321, Busia
+3486322, Vihiga
+3492707, Machakos
+3492708, Makueni
+3492709, Nairobi
+3495537, Baringo
+3495538, Bungoma
+3495539, Elegeyo-Marakwet
+3495540, Embu
+3495541, Garissa
+3495542, Isiolo
+3495543, Kakamega
+3495544, Kiambu
+3495545, Kilifi
+3495546, Kirinyaga
+3495547, Kitui
+3495548, Kwale
+3495549, Laikipia
+3495550, Lamu
+3495551, Mandera
+3495552, Marsabit
+3495553, Meru
+3495554, Mombasa
+3495556, Nandi
+3495557, Nyandarua
+3495558, Nyeri
+3495559, Samburu
+3495560, Taita Taveta
+3495561, Tana River
+3495562, Tharaka-Nithi
+3495563, Trans Nzoia
+3495564, Turkana
+3495565, Uasin Gishu
+3495566, Wajir
+3495567, West Pokot
+3977580, Murang'a

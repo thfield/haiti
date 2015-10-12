@@ -40,7 +40,16 @@
     </select>
     <span class="buttons"></span>
   </div>
+</div>
 
+<div class="container">
+  <div class="map" id="kenyamap" style="height: 400px; width: 500px;"></div>
+    <div class="controls" id="kenyamap-controls">
+    <select name="select" onchange="loadAndRedraw.call(myMap1,'data/'+this.value+'.json')">
+      <option value="kenya" selected>population</option>
+    </select>
+    <span class="buttons"></span>
+  </div>
 </div>
 
   <script src="js/app.js" charset="utf-8"></script>

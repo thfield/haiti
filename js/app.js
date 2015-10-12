@@ -1,6 +1,7 @@
 //TODO make setColors() more efficient
 //TODO write script to autogenerate select box
 //TODO why does setColors affect both Datamaps without initializing colorMap property?
+//TODO re-project when different country is loaded
 
 var tint = 'YlOrRd',
     cLevels = 7;
@@ -47,6 +48,34 @@ var myMap1,
   });
 })({dataFile:'data/2803.json', mapId:'theothermap'});
 
+(function(initialize){
+  d3.json(initialize.dataFile, function(error, dataset) {
+    myMap3 = new Datamap({
+      element: document.getElementById(initialize.mapId),
+      geographyConfig: {
+        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+      },
+      setProjection: function(element) {
+        var projection = d3.geo.mercator()
+          // .center([0.212065, -37.731314])
+          .center([37.731314,0.212065])
+          // .scale(element.offsetWidth*1)
+          .scale(element.offsetWidth*4.5)
+          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+         var path = d3.geo.path().projection(projection);
+         return {path: path, projection: projection};
+      },
+      scope: dataset.scope,
+      data: dataset.data,
+      title: dataset.title,
+      colorPalette: colorbrewer[tint][cLevels],
+      done: function(self){
+        drawOrRedraw.call(self);
+      }
+    });
+  });
+})({dataFile:'data/kenya.json', mapId:'kenyamap'});
+
 function drawOrRedraw(){
   var self=this;
   setColors.call(self);
@@ -86,7 +115,6 @@ function drawOrRedraw(){
         .attr('class','choroMax')
         .attr('x', choroKeyOptions.hSize * (cLevels+1))
         .attr('y', choroKeyOptions.vSize);
-console.log("i");
     self.options.redraw = true;
   } else {
     d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
