@@ -1,6 +1,7 @@
 //TODO make setColors() more efficient
 //TODO redraw map if new data file has different scope
 //TODO write script to autogenerate select box
+//TODO why does setColors affect both Datamaps without initializing colorMap property?
 
 var tint = 'YlOrRd',
     cLevels = 7;
@@ -19,7 +20,6 @@ var myMap1,
       scope: dataset.scope,
       data: dataset.data,
       title: dataset.title,
-      redraw: false,
       colorPalette: colorbrewer[tint][cLevels],
       done: function(self){
         drawOrRedraw.call(self);
@@ -39,7 +39,6 @@ var myMap1,
       scope: dataset.scope,
       data: dataset.data,
       title: dataset.title,
-      redraw: false,
       colorMap:{}, //for some reason makes setColors call only affect proper Datamap
       colorPalette: colorbrewer[tint][cLevels],
       done: function(self){
@@ -55,9 +54,7 @@ function drawOrRedraw(){
   drawButtons.call(self);
   colorIn.call(self,valueToDraw);
 
-  //! CHANGE THIS
-  //check if drawing for the first time
-  if ( self.options.redraw == false ) {
+  if ( self.options.redraw == undefined ) {
     d3.select('#'+self.options.element.id+' > .datamap')
       .append('text')
         .attr('class', 'maptitle')
