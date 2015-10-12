@@ -87,7 +87,7 @@ function drawOrRedraw(){
         .attr('class','choroMax')
         .attr('x', choroKeyOptions.hSize * (cLevels+1))
         .attr('y', choroKeyOptions.vSize);
-  };
+  };//else (check if we are redrawing){ do the renaming things in redraw };
 }
 
 function reDraw (){
@@ -95,6 +95,10 @@ function reDraw (){
   setColors.call(self);
   drawButtons.call(self);
   colorIn.call(self,valueToDraw);
+
+  d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
+  d3.select('#'+ self.options.element.id + ' .choroMin').text(self.options.choroExtent[0])
+  d3.select('#'+ self.options.element.id + ' .choroMax').text(self.options.choroExtent[1])
 }
 
 function setColors() {
@@ -152,24 +156,13 @@ function drawButtons(){
 function loadAndRedraw(pathToFile){
   var self = this;
   clearElement(self.options.element.id+'-controls', 'buttons');
-  // clearElement(self.options.element.id, 'choroKey');
 
   d3.json(pathToFile, function(error,dataset){
     self.options.data = dataset.data;
     self.options.title = dataset.title;
-
     reDraw.call(self);
-    d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
-    d3.select('#'+ self.options.element.id +' .choroMin').text(self.options.choroExtent[0])
-    d3.select('#'+ self.options.element.id +' .choroMax').text(self.options.choroExtent[1])
   });
 };
-
-function drawKey(options) {
-  var self = this;
-  // a class you'll add to the DOM elements
-
-}
 
 function clearElement(elementId,className) {
   if (className === undefined){
