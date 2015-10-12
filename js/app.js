@@ -1,5 +1,4 @@
 //TODO make setColors() more efficient
-//TODO redraw map if new data file has different scope
 //TODO write script to autogenerate select box
 //TODO why does setColors affect both Datamaps without initializing colorMap property?
 
@@ -87,7 +86,7 @@ function drawOrRedraw(){
         .attr('class','choroMax')
         .attr('x', choroKeyOptions.hSize * (cLevels+1))
         .attr('y', choroKeyOptions.vSize);
-
+console.log("i");
     self.options.redraw = true;
   } else {
     d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
@@ -129,7 +128,6 @@ function setColors() {
   });
 };
 
-
 function colorIn(val){
   var self = this;
   self.updateChoropleth(self.options.colorMap[val]);
@@ -152,12 +150,20 @@ function drawButtons(){
 
 function loadAndRedraw(pathToFile){
   var self = this;
-  clearElement(self.options.element.id+'-controls', 'buttons');
-
-  d3.json(pathToFile, function(error,dataset){
+  clearElement(self.options.element.id+'-controls', 'buttons'); //get rid of buttons
+  d3.json(pathToFile, function(error,dataset){ //load new data
     self.options.data = dataset.data;
     self.options.title = dataset.title;
-    drawOrRedraw.call(self);
+
+    if (self.options.scope != dataset.scope){//check if the map needs to be redrawn with new borders
+      self.options.scope = dataset.scope;
+      self.options.geographyConfig.dataUrl = 'maps/' +  dataset.scope + '-topo05.json';
+      clearElement(self.options.element.id, 'datamap'); // empty old map
+      self.options.redraw = undefined; //prepare for choropleth color
+      self.draw(); // draw new map
+    } else {
+      drawOrRedraw.call(self); //if the map uses the same borders just redraw
+    };
   });
 };
 
