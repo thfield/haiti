@@ -2,6 +2,7 @@
 //TODO make setColors() more efficient
 //TODO redraw map if new data file has different scope
 //TODO write script to autogenerate select box
+//TODO tooltips not updating correctly: data-info tag is not updating with "updateChoropleth" call
 
 var tint = 'YlOrRd',
     cLevels = 7;
@@ -116,6 +117,9 @@ function setColors() {
       allVals.push(self.options.data[d][j]);
       valueToDraw = j;
     });
+    // debugger;
+    self.svg.select('.' + d).attr('data-info', JSON.stringify(self.options.data[d]));
+
   });
 
   self.options.choroExtent = d3.extent(allVals);
@@ -136,6 +140,8 @@ function setColors() {
 function colorIn(val){
   var self = this;
   self.updateChoropleth(self.options.colorMap[val]);
+
+  // self.updateChoropleth(self.options.colorMap);
   self.options.geographyConfig.popupTemplate = function(geography, data) {
       return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[val] : '') + '</div>';
   };
