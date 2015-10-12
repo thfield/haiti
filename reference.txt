@@ -30,3 +30,20 @@ convert geojson to topojson:
     topojson -o full-topo05.json --properties id_com,commune,id_dep,departemen,code --simplify-proportion .05 communes.json departments.json
   combine:
     topojson -o full-topo05.json -p communes-topo05.json departments-topo05.json
+
+
+http://ben.balter.com/2013/06/26/how-to-convert-shapefiles-to-geojson-for-use-on-github/
+
+http://www.naturalearthdata.com/
+https://osm.wno-edv-service.de/boundaries/
+
+1. get boundary files from https://osm.wno-edv-service.de/boundaries/
+2. open in QGIS and if needed, trim using natural earth 10m boundary files
+    QGIS to trim shapefiles:
+      vector->geoprocessing tools->intersect/difference
+      input layer: cookie dough
+      intersect layer: cookie cutter
+3. save layer as geojson
+4. convert to topojson
+
+topojson -o kenya-counties-topo05.json --id-property ID --properties name=NAME --simplify-proportion .05 kenya_states.geojson

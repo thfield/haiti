@@ -18,11 +18,12 @@
 <div class="container">
   <div class="map" id="themap" style="height: 400px; width: 500px;"></div>
     <div class="controls" id="themap-controls">
-    <select name="select" onchange="loadAndRedraw.call(myMap,'data/'+this.value+'.json')">
-      <option value="2801">2801</option>
+    <select name="select" onchange="loadAndRedraw.call(myMap1,'data/'+this.value+'.json')">
+      <option value="2801" selected>2801</option>
       <option value="2802">2802</option>
       <option value="2803">2803</option>
       <option value="2804">2804</option>
+      <option value="department">department</option>
     </select>
     <span class="buttons"></span>
   </div>
@@ -33,13 +34,22 @@
   <div class="controls" id="theothermap-controls">
     <select name="select" onchange="loadAndRedraw.call(myMap2,'data/'+this.value+'.json')">
       <option value="2801">2801</option>
-      <option value="2802" selected>2802</option>
-      <option value="2803">2803</option>
+      <option value="2802">2802</option>
+      <option value="2803" selected>2803</option>
       <option value="2804">2804</option>
     </select>
     <span class="buttons"></span>
   </div>
+</div>
 
+<div class="container">
+  <div class="map" id="kenyamap" style="height: 400px; width: 500px;"></div>
+    <div class="controls" id="kenyamap-controls">
+    <select name="select" onchange="loadAndRedraw.call(myMap1,'data/'+this.value+'.json')">
+      <option value="kenya" selected>population</option>
+    </select>
+    <span class="buttons"></span>
+  </div>
 </div>
 
   <script src="js/app.js" charset="utf-8"></script>

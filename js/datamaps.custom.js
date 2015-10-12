@@ -342,7 +342,8 @@
         drawSubunits.call(self, data);
         handleGeographyConfig.call(self);
 
-        if ( self.options.geographyConfig.popupOnHover || self.options.bubblesConfig.popupOnHover) {
+        // if ( self.options.geographyConfig.popupOnHover || self.options.bubblesConfig.popupOnHover) {
+        if ( self.options.geographyConfig.popupOnHover) {
           hoverover = d3.select( self.options.element ).append('div')
             .attr('class', 'datamaps-hoverover')
             .style('z-index', 10001)

@@ -31,14 +31,14 @@ D5	Department de l'Ouest (La Gonave)
 
 1 Ouest D5
 2 Sud-Est D4
-3 Nord
-4 Nord-Est
+3 Nord D6
+4 Nord-Est D7
 5 Artibonite D3
 6 Centre D2
-7 Sud
-8 Grande-Anse
+7 Sud D8
+8 Grande-Anse D9
 9 Nord-Ouest D1
-10 Nippes
+10 Nippes D10
 
 
 111: Port-au-Prince

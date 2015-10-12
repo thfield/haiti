@@ -1,37 +1,18 @@
-//TODO change reDraw() to draw or redraw title and choro key values
 //TODO make setColors() more efficient
-//TODO redraw map if new data file has different scope
 //TODO write script to autogenerate select box
-//TODO tooltips not updating correctly: data-info tag is not updating with "updateChoropleth" call
+//TODO why does setColors affect both Datamaps without initializing colorMap property?
+//TODO re-project when different country is loaded
 
 var tint = 'YlOrRd',
     cLevels = 7;
 
 var valueToDraw = '';
-var myMap,
+var myMap1,
     myMap2;
 
 (function(initialize){
   d3.json(initialize.dataFile, function(error, dataset) {
-    myMap = new Datamap({
-      element: document.getElementById(initialize.mapId),
-      geographyConfig: {
-        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
-      },
-      scope: dataset.scope,
-      data: dataset.data,
-      title: dataset.title,
-      colorPalette: colorbrewer[tint][cLevels],
-      done: function(self){
-      drawOrRedraw.call(self);
-      }
-    });
-  });
-})({dataFile:'data/2801.json', mapId:'themap'});
-
-(function(initialize){
-  d3.json(initialize.dataFile, function(error, dataset) {
-    myMap2 = new Datamap({
+    myMap1 = new Datamap({
       element: document.getElementById(initialize.mapId),
       geographyConfig: {
         dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
@@ -45,7 +26,55 @@ var myMap,
       }
     });
   });
-})({dataFile:'data/2802.json', mapId:'theothermap'});
+})({dataFile:'data/2801.json', mapId:'themap'});
+
+
+(function(init){
+  d3.json(init.dataFile, function(error, dataset) {
+    myMap2 = new Datamap({
+      element: document.getElementById(init.mapId),
+      geographyConfig: {
+        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+      },
+      scope: dataset.scope,
+      data: dataset.data,
+      title: dataset.title,
+      colorMap:{}, //for some reason makes setColors call only affect proper Datamap
+      colorPalette: colorbrewer[tint][cLevels],
+      done: function(self){
+        drawOrRedraw.call(self);
+      }
+    });
+  });
+})({dataFile:'data/2803.json', mapId:'theothermap'});
+
+(function(initialize){
+  d3.json(initialize.dataFile, function(error, dataset) {
+    myMap3 = new Datamap({
+      element: document.getElementById(initialize.mapId),
+      geographyConfig: {
+        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+      },
+      setProjection: function(element) {
+        var projection = d3.geo.mercator()
+          // .center([0.212065, -37.731314])
+          .center([37.731314,0.212065])
+          // .scale(element.offsetWidth*1)
+          .scale(element.offsetWidth*4.5)
+          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+         var path = d3.geo.path().projection(projection);
+         return {path: path, projection: projection};
+      },
+      scope: dataset.scope,
+      data: dataset.data,
+      title: dataset.title,
+      colorPalette: colorbrewer[tint][cLevels],
+      done: function(self){
+        drawOrRedraw.call(self);
+      }
+    });
+  });
+})({dataFile:'data/kenya.json', mapId:'kenyamap'});
 
 function drawOrRedraw(){
   var self=this;
@@ -53,9 +82,7 @@ function drawOrRedraw(){
   drawButtons.call(self);
   colorIn.call(self,valueToDraw);
 
-  //! CHANGE THIS
-  //check if drawing for the first time
-  if (true) {
+  if ( self.options.redraw == undefined ) {
     d3.select('#'+self.options.element.id+' > .datamap')
       .append('text')
         .attr('class', 'maptitle')
@@ -88,18 +115,12 @@ function drawOrRedraw(){
         .attr('class','choroMax')
         .attr('x', choroKeyOptions.hSize * (cLevels+1))
         .attr('y', choroKeyOptions.vSize);
-  };//else (check if we are redrawing){ do the renaming things in redraw };
-}
-
-function reDraw (){
-  var self = this;
-  setColors.call(self);
-  drawButtons.call(self);
-  colorIn.call(self,valueToDraw);
-
-  d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
-  d3.select('#'+ self.options.element.id + ' .choroMin').text(self.options.choroExtent[0])
-  d3.select('#'+ self.options.element.id + ' .choroMax').text(self.options.choroExtent[1])
+    self.options.redraw = true;
+  } else {
+    d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
+    d3.select('#'+ self.options.element.id + ' .choroMin').text(self.options.choroExtent[0]);
+    d3.select('#'+ self.options.element.id + ' .choroMax').text(self.options.choroExtent[1]);
+  };
 }
 
 function setColors() {
@@ -117,9 +138,7 @@ function setColors() {
       allVals.push(self.options.data[d][j]);
       valueToDraw = j;
     });
-    // debugger;
     self.svg.select('.' + d).attr('data-info', JSON.stringify(self.options.data[d]));
-
   });
 
   self.options.choroExtent = d3.extent(allVals);
@@ -140,8 +159,6 @@ function setColors() {
 function colorIn(val){
   var self = this;
   self.updateChoropleth(self.options.colorMap[val]);
-
-  // self.updateChoropleth(self.options.colorMap);
   self.options.geographyConfig.popupTemplate = function(geography, data) {
       return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[val] : '') + '</div>';
   };
@@ -161,12 +178,20 @@ function drawButtons(){
 
 function loadAndRedraw(pathToFile){
   var self = this;
-  clearElement(self.options.element.id+'-controls', 'buttons');
-
-  d3.json(pathToFile, function(error,dataset){
+  clearElement(self.options.element.id+'-controls', 'buttons'); //get rid of buttons
+  d3.json(pathToFile, function(error,dataset){ //load new data
     self.options.data = dataset.data;
     self.options.title = dataset.title;
-    reDraw.call(self);
+
+    if (self.options.scope != dataset.scope){//check if the map needs to be redrawn with new borders
+      self.options.scope = dataset.scope;
+      self.options.geographyConfig.dataUrl = 'maps/' +  dataset.scope + '-topo05.json';
+      clearElement(self.options.element.id, 'datamap'); // empty old map
+      self.options.redraw = undefined; //prepare for choropleth color
+      self.draw(); // draw new map
+    } else {
+      drawOrRedraw.call(self); //if the map uses the same borders just redraw
+    };
   });
 };
 
