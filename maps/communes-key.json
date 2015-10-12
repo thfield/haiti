@@ -1,0 +1,1005 @@
+[
+  {
+    "id": 112,
+    "name": "Delmas",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 111,
+    "name": "Port-au-Prince",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 114,
+    "name": "Petion-Ville",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 113,
+    "name": "Carrefour",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 134,
+    "name": "Cornillon/Grd Bois",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 115,
+    "name": "Kenscoff",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 116,
+    "name": "Gressier",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 117,
+    "name": "Cite Soleil",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 118,
+    "name": "Tabarre",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 121,
+    "name": "Leogane",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 135,
+    "name": "Fonds Verrettes",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 123,
+    "name": "Grand-Goave",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 122,
+    "name": "Petit Goave",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 133,
+    "name": "Ganthier",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 233,
+    "code": "D4C6",
+    "name": "Thiotte",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 142,
+    "name": "Cabaret",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 232,
+    "code": "D4C3",
+    "name": "Grand Gosier",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 152,
+    "code": "D5C2",
+    "name": "Pointe A Raquette",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 211,
+    "name": "Jacmel",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 151,
+    "code": "D5C1",
+    "name": "Anse A Galet",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 212,
+    "name": "Marigot",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 213,
+    "code": "D4C7",
+    "name": "Cayes-Jacmel",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 214,
+    "code": "D4C4",
+    "name": "La Vallee",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 222,
+    "code": "D4C5",
+    "name": "Cotes de Fer",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 231,
+    "code": "D4C2",
+    "name": "Belle Anse",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 311,
+    "name": "Cap Haitien",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 371,
+    "name": "Plaisance",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 234,
+    "code": "D4C1",
+    "name": "Anse A Pitre",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 413,
+    "name": "Perches",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 442,
+    "name": "Carice",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 443,
+    "name": "Mombin Crochu",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 511,
+    "code": "D3C1",
+    "name": "Gonaives",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 312,
+    "name": "Quartier Morin",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 313,
+    "name": "Limonade",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 321,
+    "name": "Acul du Nord",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 322,
+    "name": "Plaine du Nord",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 323,
+    "name": "Milot",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 331,
+    "name": "Grande Riviere Du Nord",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 921,
+    "name": "Saint Louis du Nord",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 341,
+    "name": "St. Raphael",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 332,
+    "name": "Bahon",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 343,
+    "name": "Ranquitte",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 344,
+    "name": "Pignon",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 342,
+    "name": "Dondon",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 632,
+    "name": "Belladere",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 345,
+    "name": "La Victoire",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 351,
+    "name": "Borgne",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 352,
+    "name": "Port Margot",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 361,
+    "name": "Limbe",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 633,
+    "name": "Savanette",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 362,
+    "name": "Bas Limbe",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 622,
+    "name": "Saut d'Eau",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 411,
+    "name": "Fort Liberte",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 412,
+    "name": "Ferrier",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 722,
+    "name": "St. Jean du Sud",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 372,
+    "name": "Pilate",
+    "id_dep": 3,
+    "departemen": "NORD"
+  },
+
+  {
+    "id": 716,
+    "name": "Ile A Vache",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 421,
+    "name": "Ouanaminthe",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 422,
+    "name": "Capotille",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 715,
+    "name": "Maniche",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 423,
+    "name": "Mont Organise",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 431,
+    "name": "Trou du Nord",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 432,
+    "name": "Sainte Suzanne",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 533,
+    "name": "La Chapelle",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 541,
+    "name": "Dessalines/Marchandes",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 542,
+    "name": "Petite Riviere de l'Art",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 433,
+    "name": "Terrier Rouge",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 434,
+    "name": "Caracol",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 613,
+    "code": "D2C4",
+    "name": "Thomonde",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 441,
+    "name": "Valliere",
+    "id_dep": 4,
+    "departemen": "NORD EST"
+  },
+
+  {
+    "id": 512,
+    "name": "Ennery",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 721,
+    "name": "Port-Salut",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 513,
+    "name": "L'Estere",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 741,
+    "name": "Coteaux",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 523,
+    "code": "D3C2",
+    "name": "Anse Rouge",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 531,
+    "name": "Saint-Marc",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 532,
+    "name": "Verrettes",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 521,
+    "name": "Gros Morne",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 742,
+    "name": "Port-a-Piment",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 1024,
+    "name": "Arnaud",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 551,
+    "name": "Saint-Michel de l'Attal",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 522,
+    "code": "D3C3",
+    "name": "Terre Neuve",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 543,
+    "name": "Grande Saline",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 743,
+    "name": "Roche-A-Bateau",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 544,
+    "name": "Desdunes",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 621,
+    "name": "Mirebalais",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 552,
+    "name": "Marmelade",
+    "id_dep": 5,
+    "departemen": "ARTIBONITE"
+  },
+
+  {
+    "id": 751,
+    "name": "Chardonnieres",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 611,
+    "code": "D2C5",
+    "name": "Hinche",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 612,
+    "name": "Maissade",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 752,
+    "name": "Les Anglais",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 641,
+    "code": "D2C3",
+    "name": "Cerca La Source",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 614,
+    "code": "D2C2",
+    "name": "Cerca Carvajal",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 933,
+    "code": "D1C2",
+    "name": "Bombardopolis",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 623,
+    "code": "D2C6",
+    "name": "Boucan Carre",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 631,
+    "name": "Lascahobas",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 642,
+    "code": "D2C1",
+    "name": "Thomassique",
+    "id_dep": 6,
+    "departemen": "CENTRE"
+  },
+
+  {
+    "id": 711,
+    "name": "Les Cayes",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 723,
+    "name": "Arniquet",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 731,
+    "name": "Aquin",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 732,
+    "name": "St. Louis du Sud",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 712,
+    "name": "Torbeck",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 713,
+    "name": "Chantal",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 714,
+    "name": "Camp Perrin",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 733,
+    "name": "Cavaillon",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 753,
+    "name": "Tiburon",
+    "id_dep": 7,
+    "departemen": "SUD"
+  },
+
+  {
+    "id": 811,
+    "name": "Jeremie",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 812,
+    "name": "Abricots",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 813,
+    "name": "Bonbon",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 814,
+    "name": "Moron",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 815,
+    "name": "Chambellan",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 821,
+    "name": "Anse d'Hainault",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 822,
+    "name": "Dame-Marie",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 823,
+    "name": "Les Irois",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 834,
+    "name": "Pestel",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 831,
+    "name": "Corail",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 832,
+    "name": "Roseaux",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 833,
+    "name": "Beaumont",
+    "id_dep": 8,
+    "departemen": "GRANDE ANSE"
+  },
+
+  {
+    "id": 913,
+    "code": "D1C5",
+    "name": "Bassin Bleu",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 911,
+    "code": "D1C6",
+    "name": "Port De Paix",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 912,
+    "name": "La Tortue",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 914,
+    "name": "Chamsolme",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 1011,
+    "name": "Miragoane",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 922,
+    "name": "Anse A Foleur",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 932,
+    "code": "D1C1",
+    "name": "Baie de Henne",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 931,
+    "code": "D1C3",
+    "name": "Mole Saint Nicolas",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 934,
+    "code": "D1C4",
+    "name": "Jean Rabel",
+    "id_dep": 9,
+    "departemen": "NORD OUEST"
+  },
+
+  {
+    "id": 1012,
+    "name": "Petite Riviere de Nippes",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 1013,
+    "name": "Fonds Des Negres",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 1014,
+    "name": "Paillant",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 1021,
+    "name": "Anse A Veau",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 1022,
+    "name": "Petit Trou De Nippes",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 132,
+    "name": "Thomazeau",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 1031,
+    "name": "Baraderes",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 1023,
+    "name": "L'Asile",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 131,
+    "name": "Croix-Des-Bouquets",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 141,
+    "name": "Arcahaie",
+    "id_dep": 1,
+    "departemen": "OUEST"
+  },
+
+  {
+    "id": 221,
+    "name": "Bainet",
+    "id_dep": 2,
+    "departemen": "SUD-EST"
+  },
+
+  {
+    "id": 1025,
+    "name": "Plaisance du Sud",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  },
+
+  {
+    "id": 1032,
+    "name": "Grand Boucan",
+    "id_dep": 10,
+    "departemen": "NIPPES"
+  }
+]

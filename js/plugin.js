@@ -1,3 +1,4 @@
+
 var map = new Datamap({
   scope: 'usa',
   element: document.getElementById('container1'),
@@ -29,6 +30,8 @@ map.addPlugin('choroplethKey', function (layer,data,options) {
       .style('fill', function ( d ) { return d; })
       ;
 });
+
+
 
 
 

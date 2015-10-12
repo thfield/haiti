@@ -1,9 +1,12 @@
-http://bost.ocks.org/mike/map/
+http://bost.ocks.org/mike/map/  --Let’s Make a Map--
 http://bl.ocks.org/mbostock/4060606
 https://github.com/mbostock/d3/wiki/API-Reference
+https://developer.mozilla.org/en-US/
 http://datamaps.github.io/
 http://data.runkeeper.com/rk-usa-running-stats-by-state
+http://datamaps.markmarkoh.com/creating-a-datamaps-plugin/
 
+http://localhost:8080/haiti/
 http://haitidata.org/developer/
 
 departments:
@@ -25,5 +28,5 @@ convert geojson to topojson:
     topojson -o communes-topo05.json --id-property id_com --properties name=commune,id_dep,departemen,code --simplify-proportion .05 communes.json
   departments and communes in one file with simplification:
     topojson -o full-topo05.json --properties id_com,commune,id_dep,departemen,code --simplify-proportion .05 communes.json departments.json
-  combine:  
+  combine:
     topojson -o full-topo05.json -p communes-topo05.json departments-topo05.json
