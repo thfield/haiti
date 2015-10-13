@@ -37,6 +37,7 @@ http://ben.balter.com/2013/06/26/how-to-convert-shapefiles-to-geojson-for-use-on
 http://www.naturalearthdata.com/
 https://osm.wno-edv-service.de/boundaries/
 
+TO ADD COUNTRY SUPPORT:
 1. get boundary files from https://osm.wno-edv-service.de/boundaries/
 2. open in QGIS and if needed, trim using natural earth 10m boundary files
     QGIS to trim shapefiles:
@@ -44,6 +45,5 @@ https://osm.wno-edv-service.de/boundaries/
       input layer: cookie dough
       intersect layer: cookie cutter
 3. save layer as geojson
-4. convert to topojson
-
-topojson -o kenya-counties-topo05.json --id-property ID --properties name=NAME --simplify-proportion .05 kenya_states.geojson
+4. convert to topojson using command line:
+    topojson -o kenya-counties-topo05.json --id-property ID --properties name=NAME --simplify-proportion .05 kenya_states.geojson

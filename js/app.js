@@ -2,6 +2,7 @@
 //TODO write script to autogenerate select box
 //TODO why does setColors affect both Datamaps without initializing colorMap property?
 //TODO re-project when different country is loaded
+//TODO drawButtons seems to be called on kenya map also? probably due to "valueToDraw"
 
 var tint = 'YlOrRd',
     cLevels = 7;
