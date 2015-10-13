@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Haiti Choropleth</title>
+  <link rel="stylesheet" href="css/stylesheet.css">
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/topojson.v1.min.js"></script>
+  <script src="js/colorbrewer.v1.min.js"></script>
+  <script src="js/datamaps.custom.js"></script>
+</head>
+
+<body>
+
+
+
+<div class="container">
+  <div class="map" id="themap" style="height: 400px; width: 500px;"></div>
+    <div class="controls" id="themap-controls">
+    <select name="select" onchange="loadAndRedraw.call(myMap1,'data/'+this.value+'.json')">
+      <option value="2801" selected>2801</option>
+      <option value="2802">2802</option>
+      <option value="2803">2803</option>
+      <option value="2804">2804</option>
+      <option value="department">department</option>
+    </select>
+    <span class="buttons"></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="inputter">
+    Title:<br>
+    <input type="text" id="inputDataTitle" value="Kenyan Population"><br/>
+    Scope:<br/>
+    <select id='inputDataScope'>
+      <option value="haiti-communes">Haiti Communes</option>
+      <option value="haiti-departments">Haiti Departments</option>
+      <option value="kenya-counties" selected>Kenya Counties</option>
+    </select><br/>
+    Paste your CSV data:<br />
+    <textarea id="inputDataField" rows="8" cols="40">county, population
+    C3338139, 730129
+    C3338140, 1152282
+</textarea>
+    <button type="button" id="inputDataButton" onclick="getData()">Go!</button>
+  </div>
+</div>
+
+  <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/inputter.js" charset="utf-8"></script>
+
+</body>
+
+</html>
