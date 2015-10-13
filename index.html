@@ -53,7 +53,80 @@
 </div>
 
   <script src="js/app.js" charset="utf-8"></script>
+  <script>
+    var tint = 'YlOrRd',
+        cLevels = 7;
 
+    var valueToDraw = '';
+    var myMap1,
+        myMap2;
+
+    (function(initialize){
+      d3.json(initialize.dataFile, function(error, dataset) {
+        myMap1 = new Datamap({
+          element: document.getElementById(initialize.mapId),
+          geographyConfig: {
+            dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+          },
+          scope: dataset.scope,
+          data: dataset.data,
+          title: dataset.title,
+          colorPalette: colorbrewer[tint][cLevels],
+          done: function(self){
+            drawOrRedraw.call(self);
+          }
+        });
+      });
+    })({dataFile:'data/2801.json', mapId:'themap'});
+
+
+    (function(init){
+      d3.json(init.dataFile, function(error, dataset) {
+        myMap2 = new Datamap({
+          element: document.getElementById(init.mapId),
+          geographyConfig: {
+            dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+          },
+          scope: dataset.scope,
+          data: dataset.data,
+          title: dataset.title,
+          colorMap:{}, //for some reason makes setColors call only affect proper Datamap
+          colorPalette: colorbrewer[tint][cLevels],
+          done: function(self){
+            drawOrRedraw.call(self);
+          }
+        });
+      });
+    })({dataFile:'data/2803.json', mapId:'theothermap'});
+
+    (function(initialize){
+      d3.json(initialize.dataFile, function(error, dataset) {
+        myMap3 = new Datamap({
+          element: document.getElementById(initialize.mapId),
+          geographyConfig: {
+            dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+          },
+          setProjection: function(element) {
+            var projection = d3.geo.mercator()
+              // .center([0.212065, -37.731314])
+              .center([37.731314,0.212065])
+              // .scale(element.offsetWidth*1)
+              .scale(element.offsetWidth*4.5)
+              .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+             var path = d3.geo.path().projection(projection);
+             return {path: path, projection: projection};
+          },
+          scope: dataset.scope,
+          data: dataset.data,
+          title: dataset.title,
+          colorPalette: colorbrewer[tint][cLevels],
+          done: function(self){
+            drawOrRedraw.call(self);
+          }
+        });
+      });
+    })({dataFile:'data/kenya.json', mapId:'kenyamap'});
+  </script>
 </body>
 
 </html>

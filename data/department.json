@@ -1,6 +1,6 @@
 {
   "title": "Some Made Up Department Data",
-  "scope": "departments",
+  "scope": "haiti-departments",
   "data": {
     "D1": { "Q1": 20, "Q2": 29 },
     "D2": { "Q1": 96, "Q2": 45 },

@@ -2,79 +2,13 @@
 //TODO write script to autogenerate select box
 //TODO why does setColors affect both Datamaps without initializing colorMap property?
 //TODO re-project when different country is loaded
+//TODO drawButtons seems to be called on kenya map also? probably due to "valueToDraw"
+//TODO move cLevels (and other choro properties) to Datamap.options
+//TODO improve styles
+//TODO allow inputter to set size, basic choroKey options, title on/off, etc
+//            d3.select('#themap .maptitle').style({'display':'none'/'block'})
+//TODO make
 
-var tint = 'YlOrRd',
-    cLevels = 7;
-
-var valueToDraw = '';
-var myMap1,
-    myMap2;
-
-(function(initialize){
-  d3.json(initialize.dataFile, function(error, dataset) {
-    myMap1 = new Datamap({
-      element: document.getElementById(initialize.mapId),
-      geographyConfig: {
-        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
-      },
-      scope: dataset.scope,
-      data: dataset.data,
-      title: dataset.title,
-      colorPalette: colorbrewer[tint][cLevels],
-      done: function(self){
-        drawOrRedraw.call(self);
-      }
-    });
-  });
-})({dataFile:'data/2801.json', mapId:'themap'});
-
-
-(function(init){
-  d3.json(init.dataFile, function(error, dataset) {
-    myMap2 = new Datamap({
-      element: document.getElementById(init.mapId),
-      geographyConfig: {
-        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
-      },
-      scope: dataset.scope,
-      data: dataset.data,
-      title: dataset.title,
-      colorMap:{}, //for some reason makes setColors call only affect proper Datamap
-      colorPalette: colorbrewer[tint][cLevels],
-      done: function(self){
-        drawOrRedraw.call(self);
-      }
-    });
-  });
-})({dataFile:'data/2803.json', mapId:'theothermap'});
-
-(function(initialize){
-  d3.json(initialize.dataFile, function(error, dataset) {
-    myMap3 = new Datamap({
-      element: document.getElementById(initialize.mapId),
-      geographyConfig: {
-        dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
-      },
-      setProjection: function(element) {
-        var projection = d3.geo.mercator()
-          // .center([0.212065, -37.731314])
-          .center([37.731314,0.212065])
-          // .scale(element.offsetWidth*1)
-          .scale(element.offsetWidth*4.5)
-          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-         var path = d3.geo.path().projection(projection);
-         return {path: path, projection: projection};
-      },
-      scope: dataset.scope,
-      data: dataset.data,
-      title: dataset.title,
-      colorPalette: colorbrewer[tint][cLevels],
-      done: function(self){
-        drawOrRedraw.call(self);
-      }
-    });
-  });
-})({dataFile:'data/kenya.json', mapId:'kenyamap'});
 
 function drawOrRedraw(){
   var self=this;
@@ -83,44 +17,54 @@ function drawOrRedraw(){
   colorIn.call(self,valueToDraw);
 
   if ( self.options.redraw == undefined ) {
-    d3.select('#'+self.options.element.id+' > .datamap')
-      .append('text')
-        .attr('class', 'maptitle')
-        .text(self.options.title)
-        .attr('dy', function(){return self.options.element.offsetHeight - 5 })
-        ;
-    var choroKeyOptions = {hSize: 20, vSize: 10};
-    var className = 'choroKey';
-    var layer = this.addLayer(className);
-    // make a D3 selection.
-    var choroKey = layer
-        .selectAll(className)
-        .data( self.options.colorPalette, JSON.stringify );
-    choroKey
-      .enter()
-        .append('rect')
-        .attr('class', className) //remember to set the class name
-        .attr('width', choroKeyOptions.hSize)
-        .attr('height', choroKeyOptions.vSize)
-        .attr('x', function ( d, i ) { return choroKeyOptions.hSize*(i+1); })
-        .style('fill', function ( d ) { return d; })
-        ;
-    layer.append('text')
-        .text(self.options.choroExtent[0])
-        .attr('class','choroMin')
-        .attr('x', '0')
-        .attr('y', choroKeyOptions.vSize);
-    layer.append('text')
-        .text(self.options.choroExtent[1])
-        .attr('class','choroMax')
-        .attr('x', choroKeyOptions.hSize * (cLevels+1))
-        .attr('y', choroKeyOptions.vSize);
-    self.options.redraw = true;
+    drawChoroKey.call(self);
+    drawTitle.call(self);
   } else {
     d3.select('#'+ self.options.element.id + ' .maptitle').text(self.options.title);
     d3.select('#'+ self.options.element.id + ' .choroMin').text(self.options.choroExtent[0]);
     d3.select('#'+ self.options.element.id + ' .choroMax').text(self.options.choroExtent[1]);
   };
+}
+
+function drawChoroKey(){
+  var self = this;
+  var choroKeyOptions = {hSize: 20, vSize: 10};
+  var className = 'choroKey';
+  var layer = this.addLayer(className);
+  // make a D3 selection.
+  var choroKey = layer
+      .selectAll(className)
+      .data( self.options.colorPalette, JSON.stringify );
+  choroKey
+    .enter()
+      .append('rect')
+      .attr('class', className) //remember to set the class name
+      .attr('width', choroKeyOptions.hSize)
+      .attr('height', choroKeyOptions.vSize)
+      .attr('x', function ( d, i ) { return choroKeyOptions.hSize*(i+1); })
+      .style('fill', function ( d ) { return d; })
+      ;
+  layer.append('text')
+      .text(self.options.choroExtent[0])
+      .attr('class','choroMin')
+      .attr('x', '0')
+      .attr('y', choroKeyOptions.vSize);
+  layer.append('text')
+      .text(self.options.choroExtent[1])
+      .attr('class','choroMax')
+      .attr('x', choroKeyOptions.hSize * (cLevels+1))
+      .attr('y', choroKeyOptions.vSize);
+  self.options.redraw = true;
+}
+
+function drawTitle(){
+  var self = this;
+  d3.select('#'+self.options.element.id+' > .datamap')
+    .append('text')
+      .attr('class', 'maptitle')
+      .text(self.options.title)
+      .attr('dy', function(){return self.options.element.offsetHeight - 5 })
+      ;
 }
 
 function setColors() {
@@ -176,6 +120,71 @@ function drawButtons(){
    });
 };
 
+function getDataAndDraw(){
+  clearElement('themap'); // empty old map
+  var dataset = processInputData();
+  var country = /(\w+)/.exec(dataset.scope)[0];
+  var tint = document.getElementById('inputColor').value,
+      cLevels = 7;
+
+  customMap = new Datamap({
+    element: document.getElementById('themap'),
+    geographyConfig: {
+      dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+    },
+    setProjection: function(element) {
+      var projection = d3.geo.mercator()
+        .center(projections[country].center)
+        .scale(element.offsetWidth*projections[country].scale)
+        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+       var path = d3.geo.path().projection(projection);
+       return {path: path, projection: projection};
+    },
+    scope: dataset.scope,
+    data: dataset.data,
+    title: dataset.title,
+    colorPalette: colorbrewer[tint][cLevels],
+    done: function(self){
+      setColors.call(self);
+      colorIn.call(self,valueToDraw);
+      drawTitle.call(self);
+      // drawChoroKey.call(self);
+    }
+  });
+
+
+}
+
+function processInputData(){
+  var finalData = {};
+  var inputData = document.getElementById('inputDataField').value;
+  finalData.title = document.getElementById('inputDataTitle').value;
+  finalData.scope = document.getElementById('inputDataScope').value;
+  finalData.data = {};
+  var inputRows = [];
+  inputRows = d3.csv.parseRows(inputData);
+  inputRows.forEach(function(el){
+    removeLeadingSpaceArr(el);
+  });
+  // debugger;
+  var headings = inputRows.shift();
+  inputRows.forEach(function(inputrow){
+    inputrow.forEach(function(el,i,row){
+      if (i==0){
+        finalData.data[el] = {} ;
+      } else {
+        finalData.data[row[0]][headings[i]] = +el;
+      }
+    });
+  });
+  scrubData(finalData);
+  return finalData;
+}
+
+function scrubData(data){
+  delete data.data[''];
+}
+
 function loadAndRedraw(pathToFile){
   var self = this;
   clearElement(self.options.element.id+'-controls', 'buttons'); //get rid of buttons
@@ -195,6 +204,11 @@ function loadAndRedraw(pathToFile){
   });
 };
 
+
+var projections = {
+  kenya: { center: [38,0.1], scale: 4.5 },
+  haiti: { center: [-73.0513321, 19.0557096], scale: 18 }
+}
 function clearElement(elementId,className) {
   if (className === undefined){
     var myNode = document.getElementById(elementId);
@@ -206,9 +220,24 @@ function clearElement(elementId,className) {
   }
   return false;
 };
-
 function removeElement(elementId) {
   var myNode = document.getElementById(elementId);
   myNode.parentNode.removeChild(myNode);
   return false;
+}
+function removeLeadingSpaceObj(obj) {
+  for (var prop in obj) {
+    var newKey = prop.trim();
+    if (typeof obj[prop] === 'string')
+    { obj[newKey] = obj[prop].trim(); }
+    if (newKey !== prop)
+    { delete obj[prop]; }
+  };
+  return obj;
+}
+function removeLeadingSpaceArr(arr){
+  arr.forEach(function(el,i,arr){
+    arr[i] = el.trim();
+  });
+  return arr;
 }

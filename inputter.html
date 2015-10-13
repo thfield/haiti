@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Make Your Own Choropleth (alpha)</title>
+  <link rel="stylesheet" href="css/stylesheet.css">
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/topojson.v1.min.js"></script>
+  <script src="js/colorbrewer.v1.min.js"></script>
+  <script src="js/datamaps.custom.js"></script>
+</head>
+
+<body>
+
+
+
+<div class="container">
+  <div class="map" id="themap" style="height: 400px; width: 500px;"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="inputter">
+
+    Title:<br>
+    <input type="text" id="inputDataTitle" value=""><br/>
+    Scope:<br/>
+    <select id='inputDataScope'></select><br/>
+    Paste your CSV data:<br />
+    <textarea id="inputDataField" rows="8" cols="40"></textarea><br/>
+    <select id='inputColor'><select>Color<br/>
+    <button type="button" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
+    <button id="save">Save as Image</button>
+  </div>
+</div>
+
+  <script src="js/inputsetup.js" charset="utf-8"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/saveSvgAsPng.js" charset="utf-8"></script>
+
+</body>
+
+</html>
