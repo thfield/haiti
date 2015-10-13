@@ -19,9 +19,6 @@ function addOption(el,i, arr){
   this.appendChild(option);
 }
 
-// var svgel = d3.select('svg').node();
-
-
 d3.select("#save").on("click", function(){
   saveSvgAsPng(d3.select('svg').node(), "diagram.png");
 });

@@ -3,6 +3,11 @@
 //TODO why does setColors affect both Datamaps without initializing colorMap property?
 //TODO re-project when different country is loaded
 //TODO drawButtons seems to be called on kenya map also? probably due to "valueToDraw"
+//TODO move cLevels (and other choro properties) to Datamap.options
+//TODO improve styles
+//TODO allow inputter to set size, basic choroKey options, title on/off, etc
+//            d3.select('#themap .maptitle').style({'display':'none'/'block'})
+//TODO make
 
 
 function drawOrRedraw(){
@@ -122,7 +127,7 @@ function getDataAndDraw(){
   var tint = document.getElementById('inputColor').value,
       cLevels = 7;
 
-  myMap3 = new Datamap({
+  customMap = new Datamap({
     element: document.getElementById('themap'),
     geographyConfig: {
       dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
