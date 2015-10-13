@@ -142,6 +142,8 @@ function getDataAndDraw(){
     done: function(self){
       setColors.call(self);
       colorIn.call(self,valueToDraw);
+      drawTitle.call(self);
+      // drawChoroKey.call(self);
     }
   });
 
@@ -199,7 +201,7 @@ function loadAndRedraw(pathToFile){
 
 
 var projections = {
-  kenya: { center: [37.731314,0.212065], scale: 4.5 },
+  kenya: { center: [38,0.1], scale: 4.5 },
   haiti: { center: [-73.0513321, 19.0557096], scale: 18 }
 }
 function clearElement(elementId,className) {

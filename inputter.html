@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Haiti Choropleth</title>
+  <title>Make Your Own Choropleth (alpha)</title>
   <link rel="stylesheet" href="css/stylesheet.css">
   <script src="js/d3.v3.min.js"></script>
   <script src="js/topojson.v1.min.js"></script>
@@ -24,61 +24,20 @@
   <div class="inputter">
 
     Title:<br>
-    <input type="text" id="inputDataTitle" value="Kenyan Population"><br/>
+    <input type="text" id="inputDataTitle" value=""><br/>
     Scope:<br/>
-    <select id='inputDataScope'>
-      <option value="haiti-communes">Haiti Communes</option>
-      <option value="haiti-departments">Haiti Departments</option>
-      <option value="kenya-counties" selected>Kenya Counties</option>
-    </select><br/>
+    <select id='inputDataScope'></select><br/>
     Paste your CSV data:<br />
-    <textarea id="inputDataField" rows="8" cols="40">
-      county, population
-      C3338139, 730129
-      C3338140, 1152282
-    </textarea><br/>
-    <select id='inputColor'>
-      <option value="YlGn">YlGn</option>
-      <option value="YlGnBu">YlGnBu</option>
-      <option value="GnBu">GnBu</option>
-      <option value="BuGn">BuGn</option>
-      <option value="PuBuGn">PuBuGn</option>
-      <option value="PuBu">PuBu</option>
-      <option value="BuPu">BuPu</option>
-      <option value="RdPu">RdPu</option>
-      <option value="PuRd">PuRd</option>
-      <option value="OrRd">OrRd</option>
-      <option value="YlOrRd" selected>YlOrRd</option>
-      <option value="YlOrBr">YlOrBr</option>
-      <option value="Purples">Purples</option>
-      <option value="Blues">Blues</option>
-      <option value="Greens">Greens</option>
-      <option value="Oranges">Oranges</option>
-      <option value="Reds">Reds</option>
-      <option value="Greys">Greys</option>
-      <option value="PuOr">PuOr</option>
-      <option value="BrBG">BrBG</option>
-      <option value="PRGn">PRGn</option>
-      <option value="PiYG">PiYG</option>
-      <option value="RdBu">RdBu</option>
-      <option value="RdGy">RdGy</option>
-      <option value="RdYlBu">RdYlBu</option>
-      <option value="Spectral">Spectral</option>
-      <option value="RdYlGn">RdYlGn</option>
-      <option value="Accent">Accent</option>
-      <option value="Dark2">Dark2</option>
-      <option value="Paired">Paired</option>
-      <option value="Pastel1">Pastel1</option>
-      <option value="Pastel2">Pastel2</option>
-      <option value="Set1">Set1</option>
-      <option value="Set2">Set2</option>
-      <option value="Set3">Set3</option>
-    <select>Color<br/>
+    <textarea id="inputDataField" rows="8" cols="40"></textarea><br/>
+    <select id='inputColor'><select>Color<br/>
     <button type="button" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
+    <button id="save">Save as Image</button>
   </div>
 </div>
 
+  <script src="js/inputsetup.js" charset="utf-8"></script>
   <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/saveSvgAsPng.js" charset="utf-8"></script>
 
 </body>
 

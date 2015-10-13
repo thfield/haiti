@@ -1,6 +1,6 @@
 {
   "title": "2802 Male children aged 6-59 months",
-  "scope": "communes",
+  "scope": "haiti-communes",
   "data": {
     "C932": { "Q1": 12, "Q2": 24 },
     "C933": { "Q1": 84, "Q2": 0 },
