@@ -7,7 +7,7 @@
 //TODO improve styles
 //TODO allow inputter to set size, basic choroKey options, title on/off, etc
 //            d3.select('#themap .maptitle').style({'display':'none'/'block'})
-//TODO make
+//TODO make function to map names to shape identifiers, ie "County Name : C123"
 
 
 function drawOrRedraw(){
@@ -210,6 +210,7 @@ var projections = {
   haiti: { center: [-73.0513321, 19.0557096], scale: 18 }
 }
 function clearElement(elementId,className) {
+  //empty element by #elementId, or by parent #elementId then first child with .className
   if (className === undefined){
     var myNode = document.getElementById(elementId);
   } else  {
