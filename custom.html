@@ -15,83 +15,104 @@
 </head>
 
 <body>
-<div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Custom Choropleth</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 sidebar">
+        <div class="form-group">
 
-  <div class="col-md-4">
-    <div class="inputter">
+          <label for="inputDataTitle">Title: </label>
+          <input type="text" class="form-control" id="inputDataTitle" value="Example map of Kenya"><br/>
 
-      Title:<br>
-      <input type="text" id="inputDataTitle" value="Example map of kenya"><br/>
-      Scope:<br/>
-      <select id='inputDataScope'></select><br/>
-      Paste your CSV data:<br />
-      <textarea id="inputDataField" rows="8" cols="40">
-        county, population
-        C3338139, 730129
-        C3338140, 1152282
-        C3338145, 850920
-        C3486017, 963794
-        C3486018, 917170
-        C3486019, 1603325
-        C3486020, 687312
-        C3486288, 752396
-        C3486289, 968909
-        C3486290, 598252
-        C3486291, 842304
-        C3486321, 743946
-        C3486322, 554622
-        C3492707, 1098584
-        C3492708, 884527
-        C3492709, 3138369
-        C3495537, 555561
-        C3495538, 1375063
-        C3495539, 369998
-        C3495540, 516212
-        C3495541, 623060
-        C3495542, 143294
-        C3495543, 1660651
-        C3495544, 1623282
-        C3495545, 1109735
-        C3495546, 528054
-        C3495547, 1012709
-        C3495548, 649931
-        C3495549, 399227
-        C3495550, 101539
-        C3495551, 1025756
-        C3495552, 291166
-        C3495553, 1356301
-        C3495554, 939370
-        C3495556, 752965
-        C3495557, 596268
-        C3495558, 693558
-        C3495559, 223947
-        C3495560, 284657
-        C3495561, 240075
-        C3495562, 365330
-        C3495563, 818757
-        C3495564, 855399
-        C3495565, 894179
-        C3495566, 661941
-        C3495567, 512690
-        C3977580, 942581
-      </textarea><br/>
-      <select id='inputColor'><select>Color<br/>
-      <button type="button" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
-      <button id="save">Save as PNG</button>
+          <label for="inputDataScope">Scope: </label>
+          <select class="form-control" id='inputDataScope'></select><br/>
+
+          <label for="inputDataField">Paste your CSV data:</label>
+          <textarea class="form-control" id="inputDataField" rows="8" >
+            county, population
+            C3338139, 730129
+            C3338140, 1152282
+            C3338145, 850920
+            C3486017, 963794
+            C3486018, 917170
+            C3486019, 1603325
+            C3486020, 687312
+            C3486288, 752396
+            C3486289, 968909
+            C3486290, 598252
+            C3486291, 842304
+            C3486321, 743946
+            C3486322, 554622
+            C3492707, 1098584
+            C3492708, 884527
+            C3492709, 3138369
+            C3495537, 555561
+            C3495538, 1375063
+            C3495539, 369998
+            C3495540, 516212
+            C3495541, 623060
+            C3495542, 143294
+            C3495543, 1660651
+            C3495544, 1623282
+            C3495545, 1109735
+            C3495546, 528054
+            C3495547, 1012709
+            C3495548, 649931
+            C3495549, 399227
+            C3495550, 101539
+            C3495551, 1025756
+            C3495552, 291166
+            C3495553, 1356301
+            C3495554, 939370
+            C3495556, 752965
+            C3495557, 596268
+            C3495558, 693558
+            C3495559, 223947
+            C3495560, 284657
+            C3495561, 240075
+            C3495562, 365330
+            C3495563, 818757
+            C3495564, 855399
+            C3495565, 894179
+            C3495566, 661941
+            C3495567, 512690
+            C3977580, 942581
+          </textarea><br/>
+
+          <label for="inputColor">Color:</label>
+          <select class="form-control" id='inputColor'><select><br/>
+
+          <button type="button" class="btn btn-default" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
+          <button class="btn btn-default" id="save">Save as PNG</button>
+        </div>
+      </div>
+
+      <div class="col-md-8 main">
+        <div class="map" id="themap" style="height: 400px; width: 500px;"></div>
+      </div>
     </div>
+
+    <script src="js/inputsetup.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+
   </div>
-
-<div class="col-md-8">
-  <div class="map" id="themap" style="height: 400px; width: 500px;"></div>
-  </div>
-</div>
-
-
-
-  <script src="js/inputsetup.js" charset="utf-8"></script>
-  <script src="js/app.js" charset="utf-8"></script>
-
-</div>
 </body>
 
 </html>

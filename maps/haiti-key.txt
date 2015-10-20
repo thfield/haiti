@@ -40,7 +40,6 @@ D5	Department de l'Ouest (La Gonave)
 9 Nord-Ouest D1
 10 Nippes D10
 
-
 111: Port-au-Prince
 112: Delmas
 113: Carrefour
