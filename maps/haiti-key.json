@@ -1,5 +1,5 @@
 {
-  "haiti-communes":{
+  "haiti-departments":{
     "ouest":{"id":"D5"},
     "sud-est":{"id":"D4"},
     "nord":{"id":"D6"},
@@ -11,7 +11,7 @@
     "nord-ouest":{"id":"D1"},
     "nippes":{"id":"D10"}
   },
-  "haiti-departments":{
+  "haiti-communes":{
     "port-au-prince": {"id":"C111"},
     "delmas": {"id":"C112"},
     "carrefour": {"id":"C113"},
