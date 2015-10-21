@@ -90,16 +90,17 @@ function setColors() {
   });
 
   self.options.choroExtent = d3.extent(allVals);
+  colorScale = d3.scale.quantize()
+    .domain( self.options.choroExtent ) // use for same scale across datasets
+    // .domain( d3.extent(vals[d]) ) // use for dataset to have individual color scale
+    .range(self.options.colorPalette);
 
   d3.keys(vals).forEach(function(d){
-    colorScale[d]= d3.scale.quantize()
-      .domain( self.options.choroExtent ) // use for same scale across datasets
-      // .domain( d3.extent(vals[d]) ) // use for dataset to have individual color scale
-      .range(self.options.colorPalette);
+
     self.options.colorMap[d] = {};
     // Set up choropleth colorings
     for (var i=0; i<n; i++) {
-      self.options.colorMap[d][areas[i]] = colorScale[d](self.options.data[areas[i]][d]);
+      self.options.colorMap[d][areas[i]] = colorScale(self.options.data[areas[i]][d]);
     };
   });
 };
