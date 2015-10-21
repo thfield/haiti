@@ -47,3 +47,4 @@ TO ADD COUNTRY SUPPORT:
 3. save layer as geojson
 4. convert to topojson using command line:
     topojson -o kenya-counties-topo05.json --id-property ID --properties name=NAME --simplify-proportion .05 kenya_states.geojson
+    topojson -o usa-states-topo05.json --properties name=name --simplify-proportion .5 usa-states.json

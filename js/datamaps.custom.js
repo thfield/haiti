@@ -7,7 +7,7 @@
   var defaultOptions = {
     scope: 'world',
     responsive: false,
-    projection: '',
+    projection: "equirectangular",
     dataType: 'json',
     data: {},
     done: function() {},
@@ -97,7 +97,7 @@
       options.scope = 'world';
     }
 
-    if ( options.scope === 'usa' ) {
+    if ( options.scope === 'usa-states' ) {
       projection = d3.geo.albersUsa()
         .scale(width)
         .translate([width / 2, height / 2]);
