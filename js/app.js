@@ -7,7 +7,11 @@
 //TODO improve styles
 //TODO allow inputter to set size, basic choroKey options, title on/off, etc
 //            d3.select('#themap .maptitle').style({'display':'none'/'block'})
-//TODO make function to map names to shape identifiers, ie "County Name : C123"
+//TODO export svg as embeddable code
+//TODO zoomable map
+//TODO drawChoroKey doesn't work on custom, integrate d3 keys?
+//TODO commas in input not parsed correctly
+//TODO allow multiple (non-cohort) data series in input?
 
 
 function drawOrRedraw(){
@@ -126,9 +130,14 @@ function getDataAndDraw(){
   var country = /(\w+)/.exec(dataset.scope)[0];
   var tint = document.getElementById('inputColor').value,
       cLevels = 7;
+  var mapel = document.getElementById('themap');
+  mapel.style.display = "block";
+  document.getElementById('inputDataScope').value;
+  mapel.style.width = document.getElementById('mapWidth').value + "px";
+  mapel.style.height = document.getElementById('mapHeight').value + "px";
 
   customMap = new Datamap({
-    element: document.getElementById('themap'),
+    element: mapel,
     geographyConfig: {
       dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
     },
@@ -151,8 +160,6 @@ function getDataAndDraw(){
       // drawChoroKey.call(self);
     }
   });
-
-
 }
 
 function processInputData(){
@@ -166,7 +173,6 @@ function processInputData(){
   inputRows.forEach(function(el){
     removeLeadingSpaceArr(el);
   });
-  // debugger;
   var headings = inputRows.shift();
   inputRows.forEach(function(inputrow){
     inputrow.forEach(function(el,i,row){
@@ -174,11 +180,26 @@ function processInputData(){
         finalData.data[el] = {} ;
       } else {
         finalData.data[row[0]][headings[i]] = +el;
-      }
+      };
     });
   });
   scrubData(finalData);
+  transformKeys(finalData);
   return finalData;
+}
+
+function transformKeys(dataset){
+  var country = /(\w+)/.exec(dataset.scope)[0];
+  d3.json('maps/'+ country + '-key.json', function(error,keydata){
+    for (el in dataset.data) {
+      if (keydata[dataset.scope][el.toLowerCase()]) {
+        var newkey = keydata[dataset.scope][el.toLowerCase()].id;
+        dataset.data[newkey] = dataset.data[el];
+        delete dataset.data[el];
+      };
+    };
+  });
+  return dataset;
 }
 
 function scrubData(data){
@@ -241,4 +262,7 @@ function removeLeadingSpaceArr(arr){
     arr[i] = el.trim();
   });
   return arr;
+}
+function outputUpdate(num,target) {
+	document.querySelector(target).value = num;
 }

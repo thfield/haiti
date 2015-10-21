@@ -1,9 +1,9 @@
 var colors=["YlGn","YlGnBu","GnBu","BuGn","PuBuGn","PuBu","BuPu","RdPu","PuRd","OrRd","YlOrRd","YlOrBr","Purples","Blues","Greens","Oranges","Reds","Greys","PuOr","BrBG","PRGn","PiYG","RdBu","RdGy","RdYlBu","Spectral","RdYlGn","Accent","Dark2","Paired","Pastel1","Pastel2","Set1","Set2","Set3"];
 
 var scopes = [
+  'haiti-departments',
   'kenya-counties',
-  'haiti-communes',
-  'haiti-departments'
+  'haiti-communes'
 ];
 
 var colorChooser = document.getElementById('inputColor');
