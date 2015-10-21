@@ -12,7 +12,7 @@
 //TODO drawChoroKey doesn't work on custom, integrate d3 keys?
 //TODO commas in input not parsed correctly
 //TODO allow multiple (non-cohort) data series in input?
-
+//TODO setprojecton runs on Datamap creation
 
 function drawOrRedraw(){
   var self=this;
@@ -132,7 +132,6 @@ function getDataAndDraw(){
       cLevels = 7;
   var mapel = document.getElementById('themap');
   mapel.style.display = "block";
-  document.getElementById('inputDataScope').value;
   mapel.style.width = document.getElementById('mapWidth').value + "px";
   mapel.style.height = document.getElementById('mapHeight').value + "px";
 
@@ -142,12 +141,18 @@ function getDataAndDraw(){
       dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
     },
     setProjection: function(element) {
-      var projection = d3.geo.mercator()
+      if (dataset.scope == 'usa-states'){
+        var projection = d3.geo.albersUsa()
+        .scale(element.offsetWidth*projections[country].scale);
+      } else {
+        var projection = d3.geo.mercator()
         .center(projections[country].center)
-        .scale(element.offsetWidth*projections[country].scale)
-        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-       var path = d3.geo.path().projection(projection);
-       return {path: path, projection: projection};
+        .scale(element.offsetWidth*projections[country].scale);
+      };
+      projection
+      .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+     var path = d3.geo.path().projection(projection);
+     return {path: path, projection: projection};
     },
     scope: dataset.scope,
     data: dataset.data,
@@ -228,7 +233,8 @@ function loadAndRedraw(pathToFile){
 
 var projections = {
   kenya: { center: [38,0.1], scale: 4.5 },
-  haiti: { center: [-73.0513321, 19.0557096], scale: 18 }
+  haiti: { center: [-73.0513321, 19.0557096], scale: 18 },
+  usa: { center: [-98.6, 39.8], scale: 1.3 }
 }
 function clearElement(elementId,className) {
   //empty element by #elementId, or by parent #elementId then first child with .className
