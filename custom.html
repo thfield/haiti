@@ -8,6 +8,7 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="vendor/js/d3.v3.min.js"></script>
   <script src="vendor/js/topojson.v1.min.js"></script>
+  <script src="vendor/js/d3-legend.min.js"></script>
   <script src="vendor/js/colorbrewer.v1.min.js"></script>
   <script src="vendor/js/saveSvgAsPng.js" charset="utf-8"></script>
   <script src="js/datamaps.custom.js"></script>
@@ -409,6 +410,16 @@ Wyoming, 576412
 
           <label for="mapHeight">Height:</label><output for="mapHeight" id="mapHeightReadout">500</output>
           <input type="range" min="100" max="1000" value="500" id="mapHeight" step="10" oninput="outputUpdate(value,'#mapHeightReadout')">
+
+          <br/>
+
+          <label>
+            <input type="checkbox" id="legendToggle" onclick="hideLegend(customMap)"> Hide legend
+          </label>
+
+          <label>
+            <input type="checkbox" id="titleToggle" onclick="hideTitle(customMap)"> Hide title
+          </label>
 
           <br/>
           <button type="button" class="btn btn-default" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>

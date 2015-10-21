@@ -13,6 +13,7 @@
 //TODO commas in input not parsed correctly
 //TODO allow multiple (non-cohort) data series in input?
 //TODO setprojecton runs on Datamap creation
+//TODO move index.html drawChoroKey calls to drawLegend calls
 
 function drawOrRedraw(){
   var self=this;
@@ -61,11 +62,39 @@ function drawChoroKey(){
   self.options.redraw = true;
 }
 
+function drawLegend(){
+  var self = this;
+
+  var svg = d3.select('#'+self.options.element.id+' > .datamap');
+
+  svg.append("g")
+    // .attr("class", "legendQuant")
+    .attr('class', function(){
+      return (document.getElementById('legendToggle').checked) ? 'legendQuant hidden' : 'legendQuant';
+    })
+    .attr("transform", function(){
+      var centerH = self.options.element.offsetWidth/2;
+      return "translate("+ 20 + "," + 20 +")"
+    });
+
+  var legend = d3.legend.color()
+    // .labelFormat(d3.format(",.0f"))
+    .labelFormat(d3.format(".2s"))
+    // .orient('horizontal')
+    .shapeWidth(30)
+    .scale(self.options.colorScale);
+
+  svg.select(".legendQuant")
+    .call(legend);
+}
+
 function drawTitle(){
   var self = this;
   d3.select('#'+self.options.element.id+' > .datamap')
     .append('text')
-      .attr('class', 'maptitle')
+      .attr('class', function(){
+        return (document.getElementById('titleToggle').checked) ? 'maptitle hidden' : 'maptitle';
+      })
       .text(self.options.title)
       .attr('dy', function(){return self.options.element.offsetHeight - 5 })
       ;
@@ -75,7 +104,7 @@ function setColors() {
   var self = this;
   var vals = {};
   var allVals = []; //makes sure the different data sets use the same color scale, for instance to compare performance across time
-  var colorScale = {};
+  self.options.colorScale = {};
   var areas = d3.keys(self.options.data);
   var n = areas.length;
 
@@ -90,16 +119,17 @@ function setColors() {
   });
 
   self.options.choroExtent = d3.extent(allVals);
+  self.options.colorScale = d3.scale.quantize()
+    .domain( self.options.choroExtent ) // use for same scale across datasets
+    // .domain( d3.extent(vals[d]) ) // use for dataset to have individual color scale
+    .range(self.options.colorPalette);
 
   d3.keys(vals).forEach(function(d){
-    colorScale[d]= d3.scale.quantize()
-      .domain( self.options.choroExtent ) // use for same scale across datasets
-      // .domain( d3.extent(vals[d]) ) // use for dataset to have individual color scale
-      .range(self.options.colorPalette);
+
     self.options.colorMap[d] = {};
     // Set up choropleth colorings
     for (var i=0; i<n; i++) {
-      self.options.colorMap[d][areas[i]] = colorScale[d](self.options.data[areas[i]][d]);
+      self.options.colorMap[d][areas[i]] = self.options.colorScale(self.options.data[areas[i]][d]);
     };
   });
 };
@@ -108,7 +138,7 @@ function colorIn(val){
   var self = this;
   self.updateChoropleth(self.options.colorMap[val]);
   self.options.geographyConfig.popupTemplate = function(geography, data) {
-      return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + data[val] : '') + '</div>';
+      return '<div class="hoverinfo">' + geography.properties.name +  (data ? ': ' + d3.format(',')(data[val]) : '') + '</div>';
   };
 };
 
@@ -163,6 +193,8 @@ function getDataAndDraw(){
       colorIn.call(self,valueToDraw);
       drawTitle.call(self);
       // drawChoroKey.call(self);
+      drawLegend.call(self);
+      self.options.redraw = true;
     }
   });
 }
@@ -230,6 +262,14 @@ function loadAndRedraw(pathToFile){
   });
 };
 
+function hideLegend(map){
+  var legend = d3.select('#'+map.options.element.id+' .legendQuant');
+  legend.classed('hidden', !legend.classed("hidden"));
+}
+function hideTitle(map){
+  var title = d3.select('#'+map.options.element.id+' .maptitle');
+  title.classed('hidden', !title.classed("hidden"));
+}
 
 var projections = {
   kenya: { center: [38,0.1], scale: 4.5 },
