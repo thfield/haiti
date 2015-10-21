@@ -412,6 +412,16 @@ Wyoming, 576412
           <input type="range" min="100" max="1000" value="500" id="mapHeight" step="10" oninput="outputUpdate(value,'#mapHeightReadout')">
 
           <br/>
+
+          <label>
+            <input type="checkbox" id="legendToggle" onclick="hideLegend(customMap)"> Hide legend
+          </label>
+
+          <label>
+            <input type="checkbox" id="titleToggle" onclick="hideTitle(customMap)"> Hide title
+          </label>
+
+          <br/>
           <button type="button" class="btn btn-default" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
           <button class="btn btn-default" id="save">Save as PNG</button>
         </div>
