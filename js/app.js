@@ -8,7 +8,7 @@
 //TODO allow inputter to set size, basic choroKey options, title on/off, etc
 //            d3.select('#themap .maptitle').style({'display':'none'/'block'})
 //TODO export svg as embeddable code
-//TODO zoomable map
+//TODO zoomable map http://bl.ocks.org/biovisualize/2322933
 //TODO drawChoroKey doesn't work on custom, integrate d3 keys?
 //TODO commas in input not parsed correctly
 //TODO allow multiple (non-cohort) data series in input?
@@ -125,7 +125,6 @@ function setColors() {
     .range(self.options.colorPalette);
 
   d3.keys(vals).forEach(function(d){
-
     self.options.colorMap[d] = {};
     // Set up choropleth colorings
     for (var i=0; i<n; i++) {
@@ -168,7 +167,7 @@ function getDataAndDraw(){
   customMap = new Datamap({
     element: mapel,
     geographyConfig: {
-      dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+      dataUrl: 'maps/' +  dataset.scope + '-topo.json'
     },
     setProjection: function(element) {
       if (dataset.scope == 'usa-states'){
@@ -252,7 +251,7 @@ function loadAndRedraw(pathToFile){
 
     if (self.options.scope != dataset.scope){//check if the map needs to be redrawn with new borders
       self.options.scope = dataset.scope;
-      self.options.geographyConfig.dataUrl = 'maps/' +  dataset.scope + '-topo05.json';
+      self.options.geographyConfig.dataUrl = 'maps/' +  dataset.scope + '-topo.json';
       clearElement(self.options.element.id, 'datamap'); // empty old map
       self.options.redraw = undefined; //prepare for choropleth color
       self.draw(); // draw new map
