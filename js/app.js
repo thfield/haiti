@@ -14,6 +14,7 @@
 //TODO allow multiple (non-cohort) data series in input?
 //TODO setprojecton runs on Datamap creation
 //TODO move index.html drawChoroKey calls to drawLegend calls
+//TODO implement handlebars.js? or jade?
 
 function drawOrRedraw(){
   var self=this;
