@@ -2,7 +2,10 @@
 title: Make Your Own Choropleth (alpha)
 email:
 description: > # this means to ignore newlines until "baseurl:"
-
+  Do you need to make a Choropleth for some sort of presentation?
+  This might be the tool you're looking for.
+  Copy-paste some CSV data, make sure it's of the format "region, number"
+  You can find which regions are supported on the Help page
 baseurl: "/haiti" # the subpath of your site, e.g. /blog/
 url: "http://thfield.github.io/" # the base hostname & protocol for your site
 twitter_username: thfield
