@@ -14,7 +14,17 @@
 //TODO allow multiple (non-cohort) data series in input?
 //TODO setprojecton runs on Datamap creation
 //TODO move index.html drawChoroKey calls to drawLegend calls
-//TODO implement handlebars.js? or jade?
+//TODO implement jekyll
+
+var projections = {
+  kenya: { center: [38,0.1], scale: 4.5 },
+  haiti: { center: [-73.0513321, 19.0557096], scale: 18 },
+  usa: { center: [-98.6, 39.8], scale: 1.3 },
+  afghanistan: { center: [67.697, 33.939], scale: 3.5 },
+  canada: { center: [-96.80963391299998, 62.396539064000045], scale: .5 }
+  // canada: { center: [-97.85980605722982, 58.52866073016577], scale: .5 }
+}
+
 
 function drawOrRedraw(){
   var self=this;
@@ -271,11 +281,6 @@ function hideTitle(map){
   title.classed('hidden', !title.classed("hidden"));
 }
 
-var projections = {
-  kenya: { center: [38,0.1], scale: 4.5 },
-  haiti: { center: [-73.0513321, 19.0557096], scale: 18 },
-  usa: { center: [-98.6, 39.8], scale: 1.3 }
-}
 function clearElement(elementId,className) {
   //empty element by #elementId, or by parent #elementId then first child with .className
   if (className === undefined){

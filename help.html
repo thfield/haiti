@@ -1,0 +1,31 @@
+---
+layout: default
+title: Help
+permalink: /help.html
+---
+These are the Countries and subdivisions that are currently in the system and that you can use to make your own choropleth:
+<br>
+
+<ul class="tabs" data-tabs id="country-tabs">
+  {% for country in site.data.maps %}{% assign tabnum=forloop.index %}
+    <li class="tabs-title{% if tabnum == 1 %} is-active{% endif %}"><a href="#panel{{tabnum}}" {% if tabnum == 1 %} aria-selected="true"{% endif %}>{{country[0] | capitalize}}</a></li>
+  {% endfor %}
+</ul>
+
+<div class="tabs-content" data-tabs-content="country-tabs">
+  {% for country in site.data.maps %}{% assign tabnum=forloop.index %}
+    <div class="tabs-panel {% if tabnum == 1 %} is-active{% endif %}" id="panel{{tabnum}}">
+      {% for unit in country[1]%}
+        <h2>{{ unit[0] | capitalize }}</h2>
+        {% for name in unit[1] %}
+          {{ name }} <br>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
+
+<script type="text/javascript">
+  var tabs = new Foundation.Tabs($('#country-tabs'));
+</script>
