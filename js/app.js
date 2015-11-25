@@ -18,11 +18,15 @@
 
 var projections = {
   kenya: { center: [38,0.1], scale: 4.5 },
-  haiti: { center: [-73.0513321, 19.0557096], scale: 18 },
+  haiti: { center: [-73.051, 19.056], scale: 18 },
   usa: { center: [-98.6, 39.8], scale: 1.3 },
   afghanistan: { center: [67.697, 33.939], scale: 3.5 },
-  canada: { center: [-96.80963391299998, 62.396539064000045], scale: .5 },
-  france: { center: [2.209, 46.212], scale: 3 }
+  canada: { center: [-96.810, 67.397], scale: .5 },
+  france: { center: [2.209, 46.212], scale: 3 },
+  germany: { center: [10.454123599999999, 51.1644258171875], scale: 3 },
+  mexico: { center: [-102.555988995, 23.62685241], scale: 1.7 },
+  northamerica: { center: [-98.6, 39.8], scale: .5 }
+
 
 }
 

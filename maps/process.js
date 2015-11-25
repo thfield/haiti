@@ -18,7 +18,7 @@ let centroidPt = turf.center(inData);
 // let centroidPt = turf.centroid(inData);
 
 topoData.objects[scope].geometries.forEach(divis => {
-  divis.id = 'P' +divis.id;
+  divis.id = 'P' + divis.id;
 })
 topoData.objects[scopeDivision] = topoData.objects[scope];
 delete topoData.objects[scope];
@@ -28,7 +28,7 @@ outKey[scopeDivision] = {};
 
 inData.features.forEach(feature => {
   outData.push(' - ' + feature.properties.NAME);
-  outKey[scopeDivision][feature.properties.NAME] = { id: 'P'+feature.properties.ID};
+  outKey[scopeDivision][feature.properties.NAME.toLowerCase()] = { id: 'P'+feature.properties.ID};
 })
 
 console.log(centroidPt);
