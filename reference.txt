@@ -45,23 +45,23 @@ http://www.mapshaper.org/
 
 TO ADD COUNTRY SUPPORT:
 1. get boundary files from https://osm.wno-edv-service.de/boundaries/
-2. open in QGIS and if needed, trim using natural earth 10m boundary files
+    shapefiles need to be in directory structure like:
+    `/maps/osm-shapefiles/[country]/[shapefiles]`
+    where [country] is all lowercase
+2a. open in QGIS and if needed, trim using natural earth 10m boundary files
     QGIS to trim shapefiles:
       vector->geoprocessing tools->intersect/difference
       input layer: cookie dough
       intersect layer: cookie cutter
-    may result in each shape having its own feature in geojson is this is the case:
+    may result in each shape having its own feature in geojson if this is the case:
       QGIS->vector->geoprocessing tools->dissolve
         dissolve field: ID
   save layer as geojson
-3. or convert to geojson using command line:
-    ogr2ogr -f GeoJSON -t_srs crs:84 [name].geojson [name].shp
-    ogr2ogr -f GeoJSON -t_srs crs:84 canada.geojson Canada_AL4.shp
-4. convert to topojson using command line:
-    `maps$ ./convertShape [scope] [division]`
-    example: `maps$ ./convertShape canada provinces`    
-5. run `node process.js` to create key.json file, country.yaml file, and properly name country.topo object property
-6. copy center point from console to app.js var projections['country']
+2b. if no trim needed, use step 3. if 2a, then comment out ogr2ogr line in convertShape.sh
+3. convert to geojson and then topojson and make keys using command line:
+    `maps$ ./convertShape [scope] [division] [shapefile.shp]`
+    example: `maps$ ./convertShape.sh canada provinces Canada_AL4.shp`
+4. copy center point from console to app.js var projections['country'], estimate zoom level
 
 
 jekyll reference:

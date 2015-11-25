@@ -3,8 +3,8 @@
 const turf = require('turf');
 const fs = require('fs');
 
-let scope = 'canada',
-    division = 'provinces',
+let scope = process.argv[2],
+    division = process.argv[3],
     scopeDivision = scope + '-' + division;
 
 let inputFile = 'osm-shapefiles/' + scope + '/' + scope + '.geojson',
@@ -35,7 +35,7 @@ console.log(centroidPt);
 
 let outYAML = outData.join('\n');
 
-let outputYamlFile ='../_data/maps' + scope + '.yaml',
+let outputYamlFile ='../_data/maps/' + scope + '.yaml',
     outputKeyFile = scope + '-key.json';
 
 fs.writeFile(outputYamlFile, outYAML, function(err) {
