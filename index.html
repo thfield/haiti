@@ -66,7 +66,7 @@
         myMap1 = new Datamap({
           element: document.getElementById(initialize.mapId),
           geographyConfig: {
-            dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+            dataUrl: 'maps/' +  dataset.scope + '-topo.json'
           },
           scope: dataset.scope,
           data: dataset.data,
@@ -85,7 +85,7 @@
         myMap2 = new Datamap({
           element: document.getElementById(init.mapId),
           geographyConfig: {
-            dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+            dataUrl: 'maps/' +  dataset.scope + '-topo.json'
           },
           scope: dataset.scope,
           data: dataset.data,
@@ -104,7 +104,7 @@
         myMap3 = new Datamap({
           element: document.getElementById(initialize.mapId),
           geographyConfig: {
-            dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+            dataUrl: 'maps/' +  dataset.scope + '-topo.json'
           },
           setProjection: function(element) {
             var projection = d3.geo.mercator()

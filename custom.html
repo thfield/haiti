@@ -1,441 +1,90 @@
-<!doctype html>
-<html lang="en">
+---
+layout: default
+title: Custom
+permalink: /custom.html
 
-<head>
-  <meta charset="utf-8">
-  <title>Make Your Own Choropleth (alpha)</title>
-  <link rel="stylesheet" href="css/stylesheet.css">
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="vendor/js/d3.v3.min.js"></script>
-  <script src="vendor/js/topojson.v1.min.js"></script>
-  <script src="vendor/js/d3-legend.min.js"></script>
-  <script src="vendor/js/colorbrewer.v1.min.js"></script>
-  <script src="vendor/js/saveSvgAsPng.js" charset="utf-8"></script>
-  <script src="js/datamaps.custom.js"></script>
-  <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
-  <script src="vendor/js/bootstrap.min.js"></script>
+---
 
-</head>
 
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Custom Choropleth</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <!-- Button trigger modal -->
-              <a type="button" data-toggle="modal" data-target="#myModal">
-                Show Scopes
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-  </nav>
-  <div class="container-fluid">
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Scopes</h4>
-          </div>
-          <div class="modal-body">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#default" aria-controls="default" role="tab" data-toggle="tab">FAQ</a></li>
-              <li role="presentation"><a href="#haiti-departments" aria-controls="haiti-departments" role="tab" data-toggle="tab">Haiti Departments</a></li>
-              <li role="presentation"><a href="#haiti-communes" aria-controls="haiti-communes" role="tab" data-toggle="tab">Haiti Communes</a></li>
-              <li role="presentation"><a href="#kenya-counties" aria-controls="kenya-counties" role="tab" data-toggle="tab">Kenya Counties</a></li>
-              <li role="presentation"><a href="#usa-states" aria-controls="usa-states" role="tab" data-toggle="tab">USA States</a></li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="default">These are the geographies you can use</div>
-              <div role="tabpanel" class="tab-pane" id="haiti-departments">
-                <ul class="list-unstyled">
-                  <li>Ouest</li>
-                  <li>Sud-Est</li>
-                  <li>Nord</li>
-                  <li>Nord-Est</li>
-                  <li>Artibonite</li>
-                  <li>Centre</li>
-                  <li>Sud</li>
-                  <li>Grande-Anse</li>
-                  <li>Nord-Ouest</li>
-                  <li>Nippes</li>
-                </ul>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="haiti-communes">
-                <ul class="list-unstyled">
-                  <li>Port-au-Prince</li>
-                  <li>Delmas</li>
-                  <li>Carrefour</li>
-                  <li>Petion-Ville</li>
-                  <li>Kenscoff</li>
-                  <li>Gressier</li>
-                  <li>Cite Soleil</li>
-                  <li>Tabarre</li>
-                  <li>Leogane</li>
-                  <li>Petit Goave</li>
-                  <li>Grand-Goave</li>
-                  <li>Croix-Des-Bouquets</li>
-                  <li>Thomazeau</li>
-                  <li>Ganthier</li>
-                  <li>Cornillon/Grd Bois</li>
-                  <li>Fonds Verrettes</li>
-                  <li>Arcahaie</li>
-                  <li>Cabaret</li>
-                  <li>Anse A Galet</li>
-                  <li>Pointe A Raquette</li>
-                  <li>Jacmel</li>
-                  <li>Marigot</li>
-                  <li>Cayes-Jacmel</li>
-                  <li>La Vallee</li>
-                  <li>Bainet</li>
-                  <li>Cotes de Fer</li>
-                  <li>Belle Anse</li>
-                  <li>Grand Gosier</li>
-                  <li>Thiotte</li>
-                  <li>Anse A Pitre</li>
-                  <li>Cap Haitien</li>
-                  <li>Quartier Morin</li>
-                  <li>Limonade</li>
-                  <li>Acul du Nord</li>
-                  <li>Plaine du Nord</li>
-                  <li>Milot</li>
-                  <li>Grande Riviere Du Nord</li>
-                  <li>Bahon</li>
-                  <li>St. Raphael</li>
-                  <li>Dondon</li>
-                  <li>Ranquitte</li>
-                  <li>Pignon</li>
-                  <li>La Victoire</li>
-                  <li>Borgne</li>
-                  <li>Port Margot</li>
-                  <li>Limbe</li>
-                  <li>Bas Limbe</li>
-                  <li>Plaisance</li>
-                  <li>Pilate</li>
-                  <li>Fort Liberte</li>
-                  <li>Ferrier</li>
-                  <li>Perches</li>
-                  <li>Ouanaminthe</li>
-                  <li>Capotille</li>
-                  <li>Mont Organise</li>
-                  <li>Trou du Nord</li>
-                  <li>Sainte Suzanne</li>
-                  <li>Terrier Rouge</li>
-                  <li>Caracol</li>
-                  <li>Valliere</li>
-                  <li>Carice</li>
-                  <li>Mombin Crochu</li>
-                  <li>Gonaives</li>
-                  <li>Ennery</li>
-                  <li>L'Estere</li>
-                  <li>Gros Morne</li>
-                  <li>Terre Neuve</li>
-                  <li>Anse Rouge</li>
-                  <li>Saint-Marc</li>
-                  <li>Verrettes</li>
-                  <li>La Chapelle</li>
-                  <li>Dessalines/Marchandes</li>
-                  <li>Petite Riviere de l'Art</li>
-                  <li>Grande Saline</li>
-                  <li>Desdunes</li>
-                  <li>Saint-Michel de l'Attal</li>
-                  <li>Marmelade</li>
-                  <li>Hinche</li>
-                  <li>Maissade</li>
-                  <li>Thomonde</li>
-                  <li>Cerca Carvajal</li>
-                  <li>Mirebalais</li>
-                  <li>Saut d'Eau</li>
-                  <li>Boucan Carre</li>
-                  <li>Lascahobas</li>
-                  <li>Belladere</li>
-                  <li>Savanette</li>
-                  <li>Cerca La Source</li>
-                  <li>Thomassique</li>
-                  <li>Les Cayes</li>
-                  <li>Torbeck</li>
-                  <li>Chantal</li>
-                  <li>Camp Perrin</li>
-                  <li>Maniche</li>
-                  <li>Ile A Vache</li>
-                  <li>Port-Salut</li>
-                  <li>St. Jean du Sud</li>
-                  <li>Arniquet</li>
-                  <li>Aquin</li>
-                  <li>St. Louis du Sud</li>
-                  <li>Cavaillon</li>
-                  <li>Coteaux</li>
-                  <li>Port-a-Piment</li>
-                  <li>Roche-A-Bateau</li>
-                  <li>Chardonnieres</li>
-                  <li>Les Anglais</li>
-                  <li>Tiburon</li>
-                  <li>Jeremie</li>
-                  <li>Abricots</li>
-                  <li>Bonbon</li>
-                  <li>Moron</li>
-                  <li>Chambellan</li>
-                  <li>Anse d'Hainault</li>
-                  <li>Dame-Marie</li>
-                  <li>Les Irois</li>
-                  <li>Corail</li>
-                  <li>Roseaux</li>
-                  <li>Beaumont</li>
-                  <li>Pestel</li>
-                  <li>Port De Paix</li>
-                  <li>La Tortue</li>
-                  <li>Bassin Bleu</li>
-                  <li>Chamsolme</li>
-                  <li>Saint Louis du Nord</li>
-                  <li>Anse A Foleur</li>
-                  <li>Mole Saint Nicolas</li>
-                  <li>Baie de Henne</li>
-                  <li>Bombardopolis</li>
-                  <li>Jean Rabel</li>
-                  <li>Miragoane</li>
-                  <li>Petite Riviere de Nippes</li>
-                  <li>Fonds Des Negres</li>
-                  <li>Paillant</li>
-                  <li>Anse A Veau</li>
-                  <li>Petit Trou De Nippes</li>
-                  <li>L'Asile</li>
-                  <li>Arnaud</li>
-                  <li>Plaisance du Sud</li>
-                  <li>Baraderes</li>
-                  <li>Grand Boucan</li>
-                </ul>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="kenya-counties">
-                <ul class="list-unstyled">
-                  <li>Bomet</li>
-                  <li>Kisii</li>
-                  <li>Narok</li>
-                  <li>Homa Bay</li>
-                  <li>Migori</li>
-                  <li>Nakuru</li>
-                  <li>Kajiado</li>
-                  <li>Kericho</li>
-                  <li>Kisumu</li>
-                  <li>Nyamira</li>
-                  <li>Siaya</li>
-                  <li>Busia</li>
-                  <li>Vihiga</li>
-                  <li>Machakos</li>
-                  <li>Makueni</li>
-                  <li>Nairobi</li>
-                  <li>Baringo</li>
-                  <li>Bungoma</li>
-                  <li>Elegeyo-Marakwet</li>
-                  <li>Embu</li>
-                  <li>Garissa</li>
-                  <li>Isiolo</li>
-                  <li>Kakamega</li>
-                  <li>Kiambu</li>
-                  <li>Kilifi</li>
-                  <li>Kirinyaga</li>
-                  <li>Kitui</li>
-                  <li>Kwale</li>
-                  <li>Laikipia</li>
-                  <li>Lamu</li>
-                  <li>Mandera</li>
-                  <li>Marsabit</li>
-                  <li>Meru</li>
-                  <li>Mombasa</li>
-                  <li>Nandi</li>
-                  <li>Nyandarua</li>
-                  <li>Nyeri</li>
-                  <li>Samburu</li>
-                  <li>Taita Taveta</li>
-                  <li>Tana River</li>
-                  <li>Tharaka-Nithi</li>
-                  <li>Trans Nzoia</li>
-                  <li>Turkana</li>
-                  <li>Uasin Gishu</li>
-                  <li>Wajir</li>
-                  <li>West Pokot</li>
-                  <li>Murang'a</li>
-                </ul>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="usa-states">
-                <ul class="list-unstyled">
-                  <li>Alabama</li>
-                  <li>Alaska</li>
-                  <li>Arizona</li>
-                  <li>Arkansas</li>
-                  <li>California</li>
-                  <li>Colorado</li>
-                  <li>Connecticut</li>
-                  <li>Delaware</li>
-                  <li>Washington DC</li>
-                  <li>Florida</li>
-                  <li>Georgia</li>
-                  <li>Hawaii</li>
-                  <li>Idaho</li>
-                  <li>Illinois</li>
-                  <li>Indiana</li>
-                  <li>Iowa</li>
-                  <li>Kansas</li>
-                  <li>Kentucky</li>
-                  <li>Louisiana</li>
-                  <li>Maine</li>
-                  <li>Maryland</li>
-                  <li>Massachusetts</li>
-                  <li>Michigan</li>
-                  <li>Minnesota</li>
-                  <li>Mississippi</li>
-                  <li>Missouri</li>
-                  <li>Montana</li>
-                  <li>Nebraska</li>
-                  <li>Nevada</li>
-                  <li>New Hampshire</li>
-                  <li>New Jersey</li>
-                  <li>New Mexico</li>
-                  <li>New York</li>
-                  <li>North Carolina</li>
-                  <li>North Dakota</li>
-                  <li>Ohio</li>
-                  <li>Oklahoma</li>
-                  <li>Oregon</li>
-                  <li>Pennsylvania</li>
-                  <li>Rhode Island</li>
-                  <li>South Carolina</li>
-                  <li>South Dakota</li>
-                  <li>Tennessee</li>
-                  <li>Texas</li>
-                  <li>Utah</li>
-                  <li>Vermont</li>
-                  <li>Virginia</li>
-                  <li>Washington</li>
-                  <li>West Virginia</li>
-                  <li>Wisconsin</li>
-                  <li>Wyoming</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-          </div>
-        </div>
-      </div>
+<div class="medium-3 large-4 columns sidebar">
+  <form>
+    <div class="row">
+      <label for="inputDataTitle">Title: </label>
+      <input type="text" id="inputDataTitle" value="Population of US States">
     </div>
 
     <div class="row">
-      <div class="col-md-3 sidebar">
-        <div class="form-group">
-
-          <label for="inputDataTitle">Title: </label>
-          <input type="text" class="form-control" id="inputDataTitle" value="Population of US States"><br/>
-
-          <label for="inputDataScope">Scope: </label>
-          <select class="form-control" id='inputDataScope'></select><br/>
-
-          <label for="inputDataField">Paste your CSV data:</label>
-          <textarea class="form-control" id="inputDataField" rows="8" >
-state, population
-Alabama, 4822023
-Alaska, 731449
-Arizona, 6503255
-Arkansas, 2949131
-California, 40041430
-Colorado, 5187582
-Connecticut, 3590347
-Delaware, 917092
-Florida, 19617568
-Georgia, 10019945
-Hawaii, 1392313
-Idaho, 1595728
-Illinois, 15075255
-Indiana, 6457334
-Iowa, 3074186
-Kansas, 2885905
-Kentucky, 4380415
-Louisiana, 4601893
-Maine, 1329192
-Maryland, 5784563
-Massachusetts, 6146144
-Michigan, 9753360
-Minnesota, 5189009
-Mississippi, 2984926
-Missouri, 6455998
-Montana, 1005141
-Nebraska, 1855525
-Nevada, 2758931
-New Hampshire, 1320718
-New Jersey, 8964590
-New Mexico, 2085538
-New York, 19670261
-North Carolina, 9752993
-North Dakota, 699628
-Ohio, 10544225
-Oklahoma, 3814820
-Oregon, 3899353
-Pennsylvania, 11763536
-Rhode Island, 1050292
-South Carolina, 4723723
-South Dakota, 833354
-Tennessee, 6456243
-Texas, 20059203
-Utah, 2855287
-Vermont, 626011
-Virginia, 8085867
-Washington, 7897012
-West Virginia, 1855413
-Wisconsin, 5726308
-Wyoming, 576412
-          </textarea><br/>
-
-          <label for="inputColor">Color:</label>
-          <select class="form-control" id='inputColor'><select><br/>
-
-          <label for="mapWidth">Width:</label><output for="mapWidth" id="mapWidthReadout">600</output>
-          <input type="range" min="100" max="1000" value="600" id="mapWidth" step="10" oninput="outputUpdate(value,'#mapWidthReadout')">
-
-          <label for="mapHeight">Height:</label><output for="mapHeight" id="mapHeightReadout">500</output>
-          <input type="range" min="100" max="1000" value="500" id="mapHeight" step="10" oninput="outputUpdate(value,'#mapHeightReadout')">
-
-          <br/>
-
-          <label>
-            <input type="checkbox" id="legendToggle" onclick="hideLegend(customMap)"> Hide legend
-          </label>
-
-          <label>
-            <input type="checkbox" id="titleToggle" onclick="hideTitle(customMap)"> Hide title
-          </label>
-
-          <br/>
-          <button type="button" class="btn btn-default" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
-          <button class="btn btn-default" id="save">Save as PNG</button>
-        </div>
-      </div>
-
-      <div class="col-md-9 main">
-        <div class="map" id="themap" style="display:none;"></div>
-      </div>
+      <label for="inputDataScope">Scope: </label>
+      <select id='inputDataScope'></select>
     </div>
 
-    <script src="js/inputsetup.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
+    <div class="row">
+      <label for="inputDataField">Paste your CSV data:</label>
+      <textarea id="inputDataField" rows="8" >
+state,population
+{% for state in site.data.sample %}{{ state.state }}, {{ state.population }}
+{% endfor %}
+      </textarea>
+    </div>
 
-  </div>
-</body>
+    <div class="row">
+      <label for="inputColor">Color:</label>
+      <select id='inputColor'><select>
+    </div>
 
-</html>
+    <div class="row">
+      <label for="mapWidth">Width:</label><output for="mapWidth" id="mapWidthReadout">600</output>
+      <input type="range" min="100" max="1000" value="600" id="mapWidth" step="10" oninput="outputUpdate(value,'#mapWidthReadout')" />
+    </div>
+
+    <div class="row">
+      <label for="mapHeight">Height:</label><output for="mapHeight" id="mapHeightReadout">500</output>
+      <input type="range" min="100" max="1000" value="500" id="mapHeight" step="10" oninput="outputUpdate(value,'#mapHeightReadout')" />
+    </div>
+
+    <!-- <div class="row">
+      <label>Height:</label>
+      <div class='small-10 columns'>
+        <div class="slider" data-slider data-initial-start='50' >
+          <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls='sliderOutput1'></span>
+          <span class="slider-fill" data-slider-fill></span>
+        </div>
+      </div>
+      <div class='small-2 columns'>
+        <input type="number" id='sliderOutput1'>
+      </div>
+    </div> -->
+
+    <br>Hide:
+    <div class="row">
+      <span class="switch">
+        <input class="switch-input" type="checkbox" id="legendToggle" onclick="hideLegend(customMap)">
+        <label class="switch-paddle" for="legendToggle"><span class="show-for-sr">Hide legend</span></label>
+      </span>
+      <span>Legend</span>
+    </div>
+
+    <div class="row">
+      <span class="switch">
+        <input class="switch-input" type="checkbox" id="titleToggle" onclick="hideTitle(customMap)">
+        <label class="switch-paddle" for="titleToggle"><span class="show-for-sr">Hide title</span></label>
+      </span>
+      <span>Title</span>
+    </div>
+
+    <br/>
+
+    <div class="row">
+      <button type="button" class="button" id="inputDataButton" onclick="getDataAndDraw()">Draw!</button>
+      <button class="button" id="save">Save as PNG</button>
+    </div>
+  </form>
+</div>
+
+<div class="medium-9 large-8 columns main">
+  <div class="map" id="themap" style="display:none;"></div>
+</div>
+
+
+<script src="js/inputsetup.js" charset="utf-8"></script>
+<script src="js/app.js" charset="utf-8"></script>

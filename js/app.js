@@ -8,12 +8,23 @@
 //TODO allow inputter to set size, basic choroKey options, title on/off, etc
 //            d3.select('#themap .maptitle').style({'display':'none'/'block'})
 //TODO export svg as embeddable code
-//TODO zoomable map
+//TODO zoomable map http://bl.ocks.org/biovisualize/2322933
 //TODO drawChoroKey doesn't work on custom, integrate d3 keys?
 //TODO commas in input not parsed correctly
 //TODO allow multiple (non-cohort) data series in input?
 //TODO setprojecton runs on Datamap creation
 //TODO move index.html drawChoroKey calls to drawLegend calls
+//TODO implement jekyll
+
+var projections = {
+  kenya: { center: [38,0.1], scale: 4.5 },
+  haiti: { center: [-73.0513321, 19.0557096], scale: 18 },
+  usa: { center: [-98.6, 39.8], scale: 1.3 },
+  afghanistan: { center: [67.697, 33.939], scale: 3.5 },
+  canada: { center: [-96.80963391299998, 62.396539064000045], scale: .5 }
+  // canada: { center: [-97.85980605722982, 58.52866073016577], scale: .5 }
+}
+
 
 function drawOrRedraw(){
   var self=this;
@@ -125,7 +136,6 @@ function setColors() {
     .range(self.options.colorPalette);
 
   d3.keys(vals).forEach(function(d){
-
     self.options.colorMap[d] = {};
     // Set up choropleth colorings
     for (var i=0; i<n; i++) {
@@ -168,7 +178,7 @@ function getDataAndDraw(){
   customMap = new Datamap({
     element: mapel,
     geographyConfig: {
-      dataUrl: 'maps/' +  dataset.scope + '-topo05.json'
+      dataUrl: 'maps/' +  dataset.scope + '-topo.json'
     },
     setProjection: function(element) {
       if (dataset.scope == 'usa-states'){
@@ -252,7 +262,7 @@ function loadAndRedraw(pathToFile){
 
     if (self.options.scope != dataset.scope){//check if the map needs to be redrawn with new borders
       self.options.scope = dataset.scope;
-      self.options.geographyConfig.dataUrl = 'maps/' +  dataset.scope + '-topo05.json';
+      self.options.geographyConfig.dataUrl = 'maps/' +  dataset.scope + '-topo.json';
       clearElement(self.options.element.id, 'datamap'); // empty old map
       self.options.redraw = undefined; //prepare for choropleth color
       self.draw(); // draw new map
@@ -271,11 +281,6 @@ function hideTitle(map){
   title.classed('hidden', !title.classed("hidden"));
 }
 
-var projections = {
-  kenya: { center: [38,0.1], scale: 4.5 },
-  haiti: { center: [-73.0513321, 19.0557096], scale: 18 },
-  usa: { center: [-98.6, 39.8], scale: 1.3 }
-}
 function clearElement(elementId,className) {
   //empty element by #elementId, or by parent #elementId then first child with .className
   if (className === undefined){
